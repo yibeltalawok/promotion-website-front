@@ -1,75 +1,58 @@
 import React, {useEffect, useState} from "react";
-import { useForm } from "react-hook-form";
-import {useParams,useNavigate } from "react-router-dom";
-import Slider from 'react-slick';
+import {useNavigate } from "react-router-dom";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import imgGirl from '../../img/ecommerce.jpg';
 import { useDispatch, useSelector } from "react-redux";
-import { dataProducts } from "../data";
-import smartPhone from '../../img/computerimge/mouse.jpg';
-import Loading from "./loading";
 import { addToDetail } from "../../actions/detail";
 import { HiOutlineX } from "react-icons/hi";
 import AddressBaseUrl from "../../utils/BaseUrl";
 import {viewOrganization } from '../../actions/orgAction';
-import { getProduct,searchProduct,viewProducts,productCategory} from "../../actions/productAction";
+import { viewProducts} from "../../actions/productAction";
 import moment from 'moment';
 import { generateTelegramShareLink } from './generateTelegramShareLink';
 import tgicon from '../../icons/Telegram_logo.svg.webp';
 import fbicon from '../../icons/fbicon.png';
-import like from '../../icons/like.png';
-import show from '../../icons/show.png';
+import images1 from '../../img/imge1.jpeg';
+
+// import like from '../../icons/like.png';
+// import show from '../../icons/show.png';
+import { dataProducts } from '../data';
+
 const Allproducts = (message) => {
-  const [seeMore, setSeeMore] = useState(false);
-  const [vacancieDel, setVacancieDel] = useState(false);
-  const [productDel, setProductDel] = useState(false);
-  const [defaultImage, setDefaultImage] = useState({});
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm();
-//  const [product, setData] =useState(dataProducts || '');
+const [vacancieDel, setVacancieDel] = useState(false);
+ const [product, setData] =useState(dataProducts || '');
+ console.log("product==",product)
   const [term, setTerm] = useState("");
   const submitHandler = (e) => {
     e.preventDefault();
      if (term === "") return alert("Please enter search term!");
     // dispatch(searchVacancies(term));
-    console.log("term : ",term);
-    //setTerm("");
   };
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   setData(dataProducts);
-  // }, [dataProducts])
+  useEffect(() => {
+    setData(dataProducts);
+  }, [dataProducts])
   const { org } = useSelector(
     (state) => state.org )
-  //console.log("all vacancies are : ", vacancies);
-// const pages = 1;
-const navigate =useNavigate()
-const orgHandler=(id)=>{
+  // const pages = 1;
+  const navigate =useNavigate()
+  const orgHandler=(id)=>{
    navigate("org/"+id)
-}
-useEffect(() =>{
-  dispatch(viewOrganization());
-},[]);
-useEffect(() =>{
+  }
+   useEffect(() =>{
+   dispatch(viewOrganization());
+   },[]);
+   useEffect(() =>{
   dispatch(viewProducts());
 },[]);
-  const [currentIndex, setCurrentIndex] = useState(1);
-  const {product} = useSelector(
-    (state)=> state.product
-  );
-  console.log("qq==",product?.promotedProducts?.length  )
+  // const {product} = useSelector(
+  //   (state)=> state.product
+  // );
   const [page, setPage] = useState(1)
   const selectPageHandler = (selectedPage) => {
-    // alert(data.length+","+selectedPage)
-    console.log("next button cliked : ",selectedPage);
     if (selectedPage >= 1 && (selectedPage * 6)-6 <product?.promotedProducts?.length  && selectedPage !== page) {
       setPage(selectedPage)
     }}
-
 
   const detailInfo = localStorage.getItem("detailInfo")
   ? JSON.parse(localStorage.getItem("detailInfo"))
@@ -115,18 +98,7 @@ useEffect(() =>{
       const telegramShareLink = generateTelegramShareLink(message);
          window.open(telegramShareLink);
        };
-     //Share To FaceBook
-     const handleFBShareClick = () => {
-     const urlToShare = 'http://localhost:3000'; // Replace with the URL you want to share  
-      window.FB.ui(
-       {
-         method: 'share',
-         href: urlToShare,
-       },
-       function (response) {
-         // Handle the response if needed
-         console.log(response);
-       });};
+
        //Change number likes and views to its text form
        const numberOfLike = (number) => {
         // const millionPart = Math.floor(number / 1000000);
@@ -158,10 +130,10 @@ useEffect(() =>{
      <div className="flex items-center py-3 mb-4 md:ml-0 ml-3">
      <button
         className=" text-lg font-display text-black font-medium hover:text-[#0397FF]">
-          <span className="mt-10 md:ml-12  underline decoration-pink-800 decoration-4 underline-offset-8">ሁሉም</span> ምርቶች
+          <span className="mt-10 md:ml-12  underline decoration-pink-800 decoration-4 underline-offset-8 mr-1">Product</span>Lists
         </button>
         <form onSubmit={submitHandler}>
-        <div class=" mb-4 flex flex-wrap items-stretch absolute md:mt-0 mt-6 md:ml-0 ml-5 md:right-28 right-10">
+        <div class=" mb-4 flex items-stretch absolute md:mt-0 mt-10 md:ml-0 ml-5 md:right-28 right-2">
          <input className="bg-[#E3E6E6] mr-2 p-3 rounded-md md:-mt-5 mt-0 z-20 " 
              type="date"
              aria-label="Search"
@@ -191,106 +163,88 @@ useEffect(() =>{
      </form>
     </div>
    </div>
-   <div className=' bg-white md:flex lg:flex pb-32 md:-mt-12 mt-3 md:pl-14 pl-0 md:ml-3 md:mr-0 ml-10 mr-5'>    
+   <div className=' bg-white md:flex lg:flex pb-32 md:-mt-3 mt-10 md:pl-14 pl-0 md:ml-3 md:mr-0 ml-0.5 mr-0'>    
     <div class="relative grid xl:grid-cols-3 md:grid-cols-3 grid-cols-1 xl:gap-20 md:gap-20 gap-12 my-3 xl:gap-x-10 md:gap-x-7 gap-x-5">
       {
-      (product?.promotedProducts?.length)>0
+      //(product?.promotedProducts?.length)>0
+      (product.length>0)
         ?(
-          product?.promotedProducts?.slice(page * 6 - 6, page * 6).map((item, index) => {
+          //product?.promotedProducts?.slice(page * 6 - 6, page * 6).map((item, index) => {
+            product?.slice(page * 6 - 6, page * 6).map((item, index) => {
             return(
               <>
-             <div key={index} className=" h-40 md:h-56 xl:h-s6 xl:w-96 md:w-80 sm:w-60 relative md:ml-2 ml-2 mr-2 my-20 mb-24 md:mb-7">
+             {/* <div key={index} className=" xl:h-s6 xl:w-96 md:w-80 sm:w-60 relative md:ml-2 ml-2 mr-2 my-20 mb-24 md:mb-7">
              <div className="w-full h-full relative border-gray-600 
-                 shadow-md shadow-neutral-400 bg-cover bg-no-repeat rounded-xl "> 
-                 <div className="relative flex justify-center items-center h-full rounded-xl">
+                 shadow-md shadow-neutral-400 bg-cover bg-no-repeat rounded-xl ">  */}
+            <div key={index} className='xl:h-s6 xl:w-96 md:w-80 sm:w-60 md:ml-2 ml-0 mr-0 my-20 mb-5 md:mb-5 shadow-slate-600 relative md:m-10 mt-16 m-0 rounded-xl shadow-[0_0_15px_0_rgba(0,0,0,0.1)] md:h-[420px] h-[450px]'>
+             <div className='p-0.5 relative rounded-xl text-center justify-center md:h-[420px] h-[450px]'>
+                 <div className="items-center hover:mt-2 duration-500 text-center justify-center rounded-xl md:h-[420px] h-[450px]">
+                  <div className=" h-3 bg-blue-500 w-full rounded-t-xl"></div>
+                  <div className="relative w-full h-56">
                     <img
-                    className="relative transition hover:scale-125 duration-700 w-full h-full cursor-pointer  rounded-xl border-2 border-b-1 border-gray-600"
-                    //  src={`/img/${item.featureImage}`} 
-                    src={`${AddressBaseUrl}/images/${item.featureImage}`}
+                    className="relative w-full h-56 cursor-pointer  border-b-1 border-gray-400"
+                        src={`${images1}`} 
+                     // src={`${AddressBaseUrl}/images/${item.featureImage}`}
                       //onClick={ () => VacancieDetail(item)}
                      // src={smartPhone}
                       alt="product img not found"
                     />
-             </div>
-             <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full rounded-xl 
-                 justify-center overflow-hidden bg-gradient-to-r from-green-500 via-amber-300
-                 to-pink-600 opacity-0 transition duration-300 ease-in-out hover:opacity-70"
-                 onClick={()=>VacancieDetail(item)}>
-              <button onClick={() => VacancieDetail(item)} className=" h-12 w-28 rounded-3xl mt-20 text-slate-100 border border-none
-               bg-black">View Detail</button>
-             </div>
-            </div>
-         <div className="mt-4 float-left w-full flex">
-           {/* src={`${AddressBaseUrl}/images/${vacancie.image}`}  */}
-        <span className="mt-1 w-11/12 ">
-         <span className=" font-bold"> {item.name.substring(0,80)}</span>
-           <br />
-          {(org?.promotedOrgs?.length > 0)
-          ?(
-          org?.promotedOrgs?.map((orgs,index) => 
-         (
-          (orgs.id)==(item.orgId)?(
-            <>
+                 <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full rounded-xl text-center
+                    justify-center overflow-hidden bg-gradient-to-r from-green-500 via-amber-300
+                  to-pink-600 opacity-0 transition duration-300 ease-in-out hover:opacity-70"
+                    onClick={()=>VacancieDetail(item)}>
+                   <button onClick={() => VacancieDetail(item)} className=" h-12 w-28 rounded-3xl mt-20 text-slate-100 border border-none
+                  bg-black">View Detail</button>
+                </div>
+                </div>
+             <div className=" h-4/12 w-full text-center justify-center">
+              <div className=" float-left h-8/12 w-full flex text-center justify-center">
+            <div className=" w-2/3 text-left mt-3 p-1 pt-2 pl-3">
+
+       <p className=" text-cyan-600 te font-semibold">{product[0].name.substring(0,30)}</p>    
+      <p className=" ml-1 text-sm">{product[0].description.substring(0,60)}</p>   
+         </div>
+             {/* src={`${AddressBaseUrl}/images/${vacancie.image}`}  */}
             <button 
-             className=' text-[#0099ff] mt-4 float-left w-full flex'
-             onClick={() => orgHandler(`${orgs.id}`)}
-             >
-             <img className=' w-10 -mt-3 h-10 rounded-full border-1 mr-3' 
-               src={`${AddressBaseUrl}/images/${orgs?.logo}`}
-               alt='Noimage'/>
-             {orgs.name.substring(0,75)}
-             
-             </button>
-             <br/>
-            <i className="">
-          {/* {item.createdAt.split('T')[0]} */}
-          <i className=" ml-12">{moment(item.createdAt).fromNow()} </i>
-          </i>
-            </>             
-            ):(""))))
-        :("")}
-        </span>
-  
-      <span className=" float-right mr-1 flex flex-row text-center w-3/12 pt-3 mb-[-0.5]">
-        <span className="inline-block mx-auto">
-         {(likes >= 100000)
-                   ?(
-            <i className="whitespace-pre-wrap overflow-wrap break-all   text-amber-500">{formattedLikeNumber}m</i> 
-                   ):(
-                  <i className="whitespace-pre-wrap overflow-wrap break-all   text-amber-500">{likes}</i> 
-                   )}
-          <br />
-         <img onClick={handleLike} disabled={hasLiked} className="w-5 h-4 " src={`${like}`}/>
-        </span>
-        <span className="inline-block mx-auto">
-        {(views >= 100000)
-                   ?(
-            <i className="whitespace-pre-wrap overflow-wrap break-all   text-amber-500">{formattedViewNumber}m</i> 
-                   ):(
-            <i className="whitespace-pre-wrap overflow-wrap break-all text-amber-500">{views}</i> 
-                   )}
-        <br />
-         <img className="w-5 h-4  " src={`${show}`}/>
-        </span>
-     </span>   
+              className=' text-[#0099ff] float-left w-11/12 items-center text-center justify-center flex'
+              onClick={() => orgHandler(`${product[0].id}`)}
+              >
+              <img className=' w-28 h-28 rounded-l-full rounded-t-full rounded-3xl border-1' 
+               // src={`${AddressBaseUrl}/images/${orgs?.logo}`}
+               src={`/img/${item.featureImage}`} 
+                alt='Noimage'/>
+              </button>
+           </div> 
+        <div className="absolute md:flex p-3 w-full md:bottom-0 bottom-7 h-10 md:pt-2 pt-0 text-center justify-center rounded-b-xl text-gray-700 -ml-0.5">
+      <p className=" mr-1">Choose</p><p className=" mr-1 text-cyan-600">{product[0].name.substring(0,30)}</p><p>products</p>
+        </div>
+          </div>
+         </div>
      </div>
+    <div className=" font-bold w-full mt-5 ml-1"> 
+    <p className=" text-lg">{item.name.substring(0,80)}</p>
+    <p className=" ml-1 text-sm">{product[0].description.substring(0,60)}...</p>   
+    <span className=" w-full ml-1 text-sm text-cyan-600 text-center">Posted On: {item?.date}</span>  
+    </div>
     </div>
     </>)})):(<><div className=" text-xl font-semibold flex justify-center mt-5 ml-32">
-                   ------ ምንም ምርት የለም ! ------</div></>)}
+              ------ No Products ! ------</div></>)}
    </div>
   </div>
    <br /> <br />
-      {(product?.promotedProducts?.length) > 0 && 
+      {/* {(product?.promotedProducts?.length) > 0 &&  */}
+       {(product?.length) > 0 &&
        <div className=" justify-center ml-10">
-       {(product?.promotedProducts?.length >page * 6)?(
+       {(product?.length >page * 6)?(
            <p className='text-sm text-gray-700 mb-7'>
-            ክጠቅላላ <span className='font-medium ml-2 mr-2'> {product?.promotedProducts?.length} </span>
-            ምርቶች ዝርዝር ውስጥ ከቁጥር <span className='font-medium ml-2 mr-2'>{page * 6 - 6}</span>
-             እስከ ቁጥር <span className='font-medium ml-2 mr-2'> {page * 6} </span> የሚገኙ ምርቶች ዝርዝር  
+         List of products from number <span className='font-medium ml-2 mr-2'>{page * 6 - 6}</span>
+             to number <span className='font-medium ml-2 mr-2'> {page * 6} </span> 
+             in all list of <span className='font-medium ml-2 mr-2'> {product?.length} </span>
+             products 
              </p>
           ):<p className='text-sm text-gray-700 mb-7'>
-              <p className="mr-2">(መጨረሻው ነው)</p> ጠቅላላ <span className='font-medium ml-2 mr-2'> {product?.promotedProducts?.length} </span>
-              ምርቶች ብቻ ይገኛሉ::  
+              <p className="mr-2">(The End)</p> Generally <span className='font-medium ml-2 mr-2'> {product?.length} </span>
+              products only  
             </p>
           }
         <nav
@@ -302,14 +256,14 @@ useEffect(() =>{
             className='relative inline-flex items-center px-2 py-2 rounded-l-md border
              bg-[#fe9900] border-gray-300  text-sm font-medium text-gray-500 hover:bg-gray-50'
           >
-            <span className="font-bold">ምልስ</span>
+            <span className="font-bold">back</span>
           </button>
           <button
           onClick={() => selectPageHandler(page + 1)}
             className='relative inline-flex items-center px-2 py-2 rounded-r-md border
              border-gray-300 bg-[#fe9900] text-sm font-medium text-gray-700 hover:bg-gray-50'
           >
-            <span className=" font-bold">ቅጣይ</span>
+            <span className=" font-bold">next</span>
           </button>
        </nav>
        </div>
@@ -319,16 +273,14 @@ useEffect(() =>{
           <div className="justify-center items-center flex overflow-x-hidden  border-grey-100 shadow-lg overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none -mt-6 border border-grey-100">
            <div className="relative w-auto my-6 mx-auto bg-slate-500 max-w-7xl border border-grey-100 shadow-lg">
            {/*content*/}
-             <div className="rounded-lg shadow-lg relative border border-grey-100 flex flex-col w-full bg-orange-400 outline-none focus:outline-none">
+             <div className="rounded-lg shadow-lg relative border border-grey-100 flex flex-col w-full bg-orange-400 outline-none focus:outline-none p-3">
                   {/*header*/}               
                   <div className="flex justify-end p-1">
                    {/* Share button */}
                    <span className="flex flex-row ">
-                   <button className="m-2" onClick={handleFBShareClick}>           
-                     <img className="w-14 h-10 " src={fbicon} alt=""/>
-                    </button>
+
                    <button className="m-2" onClick={handleTGShareClick}>
-                     <img className="w-14 h-10" src={tgicon} alt=""/>
+                     <img className="w-14 h-10" src={images1} alt=""/>
                     </button>
                    <button
                        onClick={() => setVacancieDel(false) }
@@ -343,17 +295,17 @@ useEffect(() =>{
                     <div className="p-4 w-1/2">
                     <img
                       className="w-full h-96 transition cursor-pointer duration-700"
-                      src={`${AddressBaseUrl}/images/${detailInfo.featureImage}`}
-                     // src={samrtPc} 
+                      //src={`${AddressBaseUrl}/images/${detailInfo.featureImage}`}
+                      src={`/img/${product[0].featureImage}`} 
                       alt="product img not found"
                       /> 
                       </div>
                      <div className="m-4 w-1/2 border border-grey-100 shadow-lg">
-                     <p className="text-lg font-bold">{detailInfo?.name}</p> 
+                     <p className="text-lg font-bold">{product[0]?.name}</p> 
                      <div class="pt-2">
-                     <p className="text-sm font-bold  mt-4 text-center">{detailInfo?.description}</p>
+                     <p className="text-sm font-bold  mt-4 text-center">{product[0]?.description}</p>
                      </div>
-                    <p className="text-sm font-bold  mt-4 text-center">{detailInfo?.price} ብር</p>    
+                    <p className="text-sm font-bold  mt-4 text-center">{detailInfo?.price}birr</p>    
                     {(org?.promotedOrgs?.length > 0)
                       ?(
                         org?.promotedOrgs?.map((orgs,index) => 

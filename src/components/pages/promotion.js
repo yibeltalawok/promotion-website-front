@@ -221,7 +221,7 @@ const orgHandler =(id)=>{
     <div className="bg-[white]">
      <div className="md:pt-0 lg:pt-0 ">
       <>
-  <div className='w-full flex flex-row h-16 text-center pl-20 bg-[rgb(243,241,241)] justify-end  text-black '>
+  <div className='w-full hidden md:flex flex-row h-10 text-center pl-16 bg-[rgba(221,239,248,0.94)] justify-end  text-black '>
     {/* <div>
       <button className='ml-1 w-96 p-5 md:flex block ' 
       onClick={scrollToTop} 
@@ -235,26 +235,26 @@ const orgHandler =(id)=>{
       </button>
       </div> */}
      {/* Organization */}
-  <div id="toast-notification" className="w-full m-2 pt-0.5 max-w-xs pl-2 pr-2 h-10/12 text-center text-gray-900 rounded-lg  dark:bg-gray-800 dark:text-gray-300" role="alert">
-  <div className="flex items-center mb-3">
+  <div id="toast-notification" className="w-full m-2 max-w-xs pl-2 pr-2 text-center text-gray-900 rounded-lg  dark:bg-gray-800 dark:text-gray-300" role="alert">
+  <div className="flex items-center mb-3 -mt-1.5">
   <img className=' w-6 h-5 mx-4 ' src={building} alt='Noicon'/>
-    {(org?.promotedOrgs?.length>0)
+    {(data?.length>0)
       ?(
         <>
        <button type="button" className=" left-1 mt-0.5 font-semibol font-bold text-amber-500 justify-center items-center flex-shrink-0 hover:text-gray-900
                     rounded-full focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex  overflow-x-auto dark:text-gray-500 dark:hover:text-white dark:bg-gray-800
                      dark:hover:bg-gray-700" data-dismiss-target="#toast-notification" aria-label="Close">
-                     {org?.promotedOrgs?.length}  
+                     {data?.length}  
       </button>
-        <span className="mb-1 text-sm mt-1 font-semibold text-gray-900 ">አዲስ ድርጅቶች በቀርብ ቀን ተለቃዋል !</span>
+        <span className="mb-1 text-sm mt-1 font-semibold text-gray-900 ">latest organaizations!</span>
         </>
-        ):(<span className="mb-1 text-sm mt-1 text-red-500 font-semibold ">የተለቀቀ ድርጅት የለም !</span>)}
+        ):(<span className="mb-1 text-sm mt-1 text-red-500 font-semibold ">No organaization!</span>)}
 
     </div>
     </div>
             {/* product */}
    <div id="toast-notification" className="w-full m-2 pt-0.5 h-10/12 max-w-xs pl-2 pr-2  text-center text-gray-900 rounded-lg dark:bg-gray-800 dark:text-gray-300" role="alert">
-   <div className="flex items-center mb-3">
+   <div className="flex items-center mb-3 -mt-1.5">
    <img className=' w-6 h-5 mx-4 ' src={producticon} alt='Noicon'/>
    {(product?.promotedProducts?.length>0)
       ?(
@@ -264,27 +264,27 @@ const orgHandler =(id)=>{
                      dark:hover:bg-gray-700" data-dismiss-target="#toast-notification" aria-label="Close">
                      {product?.promotedProducts?.length} 
       </button>
-        <span className="mb-1 text-sm mt-1 font-semibold text-gray-900 ">አዲስ ምርቶች በቀርብ ቀን ተለቃዋል</span>
+        <span className="mb-1 text-sm mt-1 font-semibold text-gray-900 ">latest products!</span>
         </>
-        ):(<span className="mb-1 text-sm mt-1 text-red-500 font-semibold ">የተለቀቀ ምርት የለም</span>)}
+        ):(<span className="mb-1 text-sm mt-1 text-red-500 font-semibold ">No product!</span>)}
     </div>
   </div>
             {/* Bids */}
    <div id="toast-notification" className="w-full m-2 pt-0.5 h-10/12 max-w-xs pl-2 pr-2  text-center text-gray-900 rounded-lg dark:bg-gray-800 dark:text-gray-300" role="alert">
-    <div className="flex items-center mb-3">
+   <div className="flex items-center mb-3 -mt-1.5">
     <img className=' w-6 h-5 mx-4 ' src={biddings} alt='Noicon'/>
-    {(bidding?.vacancies?.length>0)
+    {(data?.length>0)
       ?(
         <>
       <button type="button" className=" left-1 -mt-0.5 font-semibol font-bold text-amber-500 justify-center items-center flex-shrink-0 hover:text-gray-900
                     rounded-full focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex  overflow-x-auto dark:text-gray-500 dark:hover:text-white dark:bg-gray-800
                      dark:hover:bg-gray-700" data-dismiss-target="#toast-notification" aria-label="Close">
-                     {bidding?.vacancies?.length}  
+                     {data?.length}  
 
       </button>
-        <span className="mb-1 text-sm mt-1 font-semibold text-gray-900 ">አዲስ የጫራታ ማስታወቂያዎች በቀርብ ቀን ተለቃዋል</span>
+        <span className="mb-1 text-sm mt-1 font-semibold text-gray-900 ">latest bids!</span>
         </>
-        ):(<span className="mb-1 text-sm mt-1 text-red-500 font-semibold ">የተለቀቀ የጫራታ ማስታወቂያ የለም</span>)}
+        ):(<span className="mb-1 text-sm mt-1 text-red-500 font-semibold ">No bid!</span>)}
         {/* <button type="button" className="ml-auto font-semibold text-orange-400 -mx-1 -my-1.5 bg-white justify-center items-center flex-shrink-0 hover:text-gray-900
                    rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-notification" aria-label="Close">
               !
@@ -293,7 +293,7 @@ const orgHandler =(id)=>{
     </div>
     {/* Vacancies */}
     <div id="toast-notification" className="w-full m-2 pt-0.5 h-10/12 max-w-xs pl-2 pr-2  text-center text-gray-900 rounded-lg dark:bg-gray-800 dark:text-gray-300" role="alert">
-    <div className="flex items-center mb-3">
+    <div className="flex items-center mb-3 -mt-1.5">
     <img className=' w-6 h-5 mx-4' src={vacancy} alt='Noicon'/> 
     {(vacancies?.vacancies?.length>0 || loubers?.vacancies?.length>0)
       ?(
@@ -304,9 +304,9 @@ const orgHandler =(id)=>{
                      {vacancies?.vacancies?.length + loubers?.vacancies?.length}  
 
       </button>
-        <span className="mb-1 text-sm mt-1 w-10/12 font-semibold text-gray-900 ">አዲስ የስራ ማስታወቂያዎች በቀርብ ቀን ተለቃዋል</span>
+        <span className="mb-1 text-sm mt-1 w-10/12 font-semibold text-gray-900 ">latest vacancies!</span>
         </>
-        ):(<span className="mb-1 text-sm mt-1 text-red-500 font-semibold ">የተለቀቀ የስራ ማስታወቂያ የለም</span>)}
+        ):(<span className="mb-1 text-sm mt-1 text-red-500 font-semibold ">No vacancie!</span>)}
         {/* <button type="button" className="ml-auto fixed right-3.5  font-semibold text-orange-400 -mx-1 -my-1.5 bg-white justify-center items-center flex-shrink-0 hover:text-gray-900
                    rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-notification" aria-label="Close">
               !
@@ -318,7 +318,7 @@ const orgHandler =(id)=>{
          md:text-xl xs:text-xs text-justify-center w-full md:h-24 sm:h-20 shadow-xl sm:flex bg-white items-center`}>
       <button className='ml-1 w-96 -mt-1 md:flex block ' 
               onClick={scrollToTop} > 
-      <img className=' md:w-56 md:h-24 -mt-2 w-20 h-10 lg:ml-18 sm:ml-5 rounded-2xl' 
+      <img className=' md:w-56 md:h-24 -mt-2 w-20 h-16 lg:ml-18 sm:ml-5 rounded-2xl' 
       src={Logue} 
       //src={`${AddressBaseUrl}/images/${org?.promotedOrgs && org?.promotedOrgs[currentIndex]?.logo}`}
       alt="NoLogue"
@@ -329,25 +329,24 @@ const orgHandler =(id)=>{
               <RiMenuLine size={24} onClick={setmenu}/>
               {/* <ion-icon name={!menu?'close':'menu'}></ion-icon> */}
       </div>
-
       <ul className=' lg:flex md:flex bg-white  left-0 w-full md:w-auto
       sm:hidden absolute md:static justify-end flex-1 list-none z-20 '>
       <li className='mx-8'><button className={`transition duration-700 transform hover:-translate-y-1 hover:scale-110 hover:text-[#0099ff]
                                     ${isActive === 'b0' ? 'text-[#0099ff]' : ''}`}
                                     onClick={()=> scrollToAllOrg(orgSection,'b0')}
-                                    > ድርጅቶች </button></li>
+                                    > Organaizations </button></li>
       <li className='mx-8'><button className={`transition duration-700 transform hover:-translate-y-1 hover:scale-110 hover:text-[#0099ff]
                                     ${isActive === 'b1' ? 'text-[#0099ff]' : ''}`}
                                     onClick={()=> scrollToAllProduct(productSection,'b1')}>
-                                    ምርቶች</button></li>
+                                    Products</button></li>
       <li className='mx-8'><button className={`transition duration-700 transform hover:-translate-y-1 hover:scale-110 hover:text-[#0099ff]
                                     ${isActive === 'b2' ? 'text-[#0099ff]' : ''}`}
                                     onClick={()=> scrollToAllBids(biddingSection,'b2')}>   
-                                      የጨረታ ማስታዎቂያ </button></li>
+                                    Bids </button></li>
       <li className='mx-8'><button  className={`transition duration-700 transform hover:-translate-y-1 hover:scale-110 hover:text-[#0099ff]
                                     ${isActive === 'b3' ? 'text-[#0099ff]' : ''}`}
                                     onClick={()=> scrollToAllVacancy(vacancieSection,'b3')}>
-                                    የስራ ማስታዎቂያ</button></li>
+                                    Vacancies</button></li>
        </ul>
        {/* <a href="/" className='mx-8'><button  className={`transition duration-700 transform hover:-translate-y-1 hover:scale-110 hover:text-[#0099ff]
                                     ${isActive === 'b3' ? 'text-[#0099ff]' : ''}`}
@@ -365,26 +364,26 @@ const orgHandler =(id)=>{
       {/* Mobile Navigation */}
       <ul className={`${menu ? "left-0 opacity-100" :"left-[-750px] md:opacity-0"}
                     sm:flex lg:hidden flex-1  list-none flex flex-col
-                    p-6 bg-black-gradient fixed w-full right-0  ml-0 my-2 top-14
+                    p-6 bg-black-gradient fixed w-full right-0  ml-0 my-2 top-12
                     sidebar bg-white transition-all duration-500 ease-in z-50
                     `}>
     <li className='mx-6 py-3 font-serif uppercase font-medium text-xl '>
           <button onClick={()=> scrollToAllOrg(orgSection)}
           className='transition duration-700 transform hover:-translate-y-1 hover:text-[#0099ff] hover:scale-110 flex' 
-            > <img className=' w-6 h-5 mx-4 ' src={building} alt='Noicon'/> ድርጅቶች </button></li>
+            > <img className=' w-6 h-5 mx-4 ' src={building} alt='Noicon'/> Organaizations </button></li>
     <li className='mx-6 py-2 font-serif uppercase font-medium text-xl '>
           <button onClick={()=> scrollToAllProduct(productSection)}
           className='transition duration-700 transform hover:-translate-y-1 hover:text-[#0099ff] hover:scale-110  flex'>
-          <img className=' w-6 h-5 mx-4 ' src={producticon} alt='Noicon'/> ምርቶች</button></li>
+          <img className=' w-6 h-5 mx-4 ' src={producticon} alt='Noicon'/> Products</button></li>
           <li className='mx-6 py-2 font-serif uppercase font-medium text-xl '>
         <button onClick={()=> scrollToAllBids(biddingSection)}
           className='transition duration-700 transform hover:-translate-y-1 hover:text-[#0099ff] hover:scale-110  flex' 
             >   
-          <img className=' w-6 h-5 mx-4 ' src={biddings} alt='Noicon'/> የጨረታ ማስታዎቂያ </button></li>
+          <img className=' w-6 h-5 mx-4 ' src={biddings} alt='Noicon'/> Bids </button></li>
     <li className='mx-6 py-2 font-serif uppercase font-medium text-xl '>
           <button onClick={()=> scrollToAllVacancy(vacancieSection)}
           className='transition duration-700 transform hover:-translate-y-1 hover:text-[#0099ff] hover:scale-110  flex'>
-          <img className=' w-6 h-5 mx-4' src={vacancy} alt='Noicon'/>  የስራ ማስታዎቂያ</button></li>
+          <img className=' w-6 h-5 mx-4' src={vacancy} alt='Noicon'/> Vaccancies </button></li>
     </ul>
    </>    
   </div> 
@@ -394,10 +393,10 @@ const orgHandler =(id)=>{
      <div className="md:pt-24 lg:pt-24  pt-18 -ml-7  mb-10 border-gray-400" ref={firstSection}>
      <Fristpage />
      </div>
-     <div className="mb-7 md:pl-8 pl-0 p-5 md:mt-5 -mt-10 mr-2" ref={orgSection}>
+     <div className="mb-7 md:pl-8 pl-0 p-5 md:mt-5 -mt-10 " ref={orgSection}>
         <Orgdetail />
      </div>
-     <div className="pt-2  md:pl-8 pl-0 border-t mr-2 border-b border-gray-400 mb-7 p-5" ref= {productSection}>
+     <div className="pt-2  md:pl-8 pl-0 border-t border-b border-gray-400 mb-7 p-1" ref= {productSection}>
        <Allproducts />
      </div>
      <div className="md:pt-2  md:pl-7 pl-0 md:mr-7 mr-0" ref= {biddingSection}>

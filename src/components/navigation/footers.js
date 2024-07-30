@@ -5,10 +5,10 @@ const Footers = () => {
     <>
     <footer className="text-center lg:text-left bg-[#24262B] text-gray-400">
       <div className=" py-10 text-center md:text-left grid  w-11/12 xl:w-10/12 mx-auto mb-4 border-b border-color-gray">
-        <div className="grid grid-1 md:grid-cols-1 lg:grid-cols-3 gap-0 flex md:justify-between">
+        <div className="grid grid-1 md:grid-cols-1 lg:grid-cols-3 gap-0 md:justify-between">
           <div>
             <h3 className="text-white hover:text-primary text-lg mb-5 flex items-center justify-center md:justify-start decoration-4 decoration-pink-800 underline underline-offset-8">
-            ኢጵላሣጵ
+            eplusapp
             </h3>
             <p className="font-display text-white text-sm flex items-center justify-center md:justify-start mb-4 motion-safe:hover:translate-x-2 duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-4">
@@ -37,7 +37,7 @@ const Footers = () => {
                   d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"
                 ></path>
               </svg>
-              ባ/ዳር ቀበሌ 14 ጮልፊት ህንጻ 413
+              BahirDar Kebele 14 ጮልፊት ህንጻ 413
             </p>
             <p className="font-display text-white text-sm flex items-center justify-center md:justify-start mb-4 motion-safe:hover:translate-x-2 duration-300">
               <svg
@@ -55,7 +55,7 @@ const Footers = () => {
                   d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z"
                 ></path>
               </svg>
-              +2519-1 848 4782
+              +2519 18 48 4782
             </p>
             <p className="font-display text-white text-sm flex items-center justify-center md:justify-start mb-4 motion-safe:hover:translate-x-2 duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-4">
@@ -68,24 +68,24 @@ const Footers = () => {
           </div>
           <div className="">
             <h3 className="text-white hover:text-primary text-lg mb-5 flex items-center justify-center md:justify-start decoration-4 decoration-pink-800 underline underline-offset-8">
-               አገልግሎቶች
+               Services
             </h3>
             <p className="mb-4 motion-safe:hover:translate-x-2 duration-300 font-display text-white">
-              <a href="#">ድርጅቶች</a>
+              <a href="#">Organaizations</a>
             </p>
             <p className="mb-4 motion-safe:hover:translate-x-2 duration-300 font-display text-white">
-              <a href="#">የጨረታ ማስታዎቂያ</a>
+              <a href="#">Bidding</a>
             </p>
             <p className="mb-4 motion-safe:hover:translate-x-2 duration-300 font-display text-white">
-              <a href="#">ምርት እና አገልግሎቶች</a>
+              <a href="#">Product and Service</a>
             </p>
             <p className="mb-4 motion-safe:hover:translate-x-2 duration-300 font-display text-white">
-              <a href="#">የስራ ማስታዎቂያ</a>
+              <a href="#">Vacancies</a>
             </p>
           </div>
           <div className="">
             <h3 className="text-white hover:text-primary text-lg mb-5 flex items-center justify-center md:justify-start decoration-4 decoration-pink-800 underline underline-offset-8">
-              ማስታዎቂያወች
+              Advertisition
             </h3>
             <p className="font-display text-white text-sm flex items-center justify-center md:justify-start mb-4 motion-safe:hover:translate-x-2 duration-300">
               <svg
@@ -103,7 +103,7 @@ const Footers = () => {
                   d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"
                 ></path>
               </svg>
-              ባ/ዳር ቀበሌ 14 ጮልፊት ህንጻ 413
+              Bahirdar Kebele 14 ጮልፊት ህንጻ 413
             </p>
             <p className="font-display text-white text-sm flex items-center justify-center md:justify-start mb-4 motion-safe:hover:translate-x-2 duration-300">
               <svg

@@ -15,8 +15,8 @@ import  AddressBaseUrl from "../../utils/BaseUrl";
 import { generateTelegramShareLink } from './generateTelegramShareLink';
 import tgicon from '../../icons/Telegram_logo.svg.webp';
 import fbicon from '../../icons/fbicon.png';
-import show from '../../icons/show.png';
-import like from '../../icons/like.png';
+// import show from '../../icons/show.png';
+// import like from '../../icons/like.png';
 
   const LouberWork = (message) =>{
     const dispatch = useDispatch();
@@ -118,23 +118,6 @@ const [data, setData] =useState(dataVacancy || '');
         setHasView(true);
         localStorage.setItem('postViewed', 'true');  
       }}
-         // Like count
-      const [likes, setLikes] = useState(1654539);
-      const [hasLiked, setHasLiked] = useState(false);       
-          useEffect(() => {
-            // Check if the user has already liked the post
-            const liked = localStorage.getItem('postViewed');
-            if (liked === 'true') {
-              setHasLiked(true);
-            }
-          }, []);
-        
-          const handleLike = () => {
-            if (!hasLiked) {
-              setLikes(likes + 1);
-              setHasLiked(true);
-              localStorage.setItem('postViewed', 'true');
-            }};
 
       //Share To Telegram
       const handleTGShareClick = () => {
@@ -152,29 +135,9 @@ const [data, setData] =useState(dataVacancy || '');
          function (response) {
            // Handle the response if needed
            console.log(response);
-         }); };
+         });};
        //Change number likes and views to its text form
-      const numberOfLike = (number) => {
-      // const millionPart = Math.floor(number / 1000000);
-      // const decimalPart = Math.floor((number % 1000000) / 100000) / 10; // Get the first decimal place  
-      const decimalPart = number % 1000000;
-      const millionPart = Math.floor(number / 1000000);
-      const truncatedNumber = decimalPart.toString().slice(0, 3);
-      const formattedLikeNumber = millionPart +'.'+ truncatedNumber;
-        return formattedLikeNumber
-        };
-      const NumberOfView = (number) => {
-      // const millionPart = Math.floor(number / 1000000);
-      // const decimalPart = Math.floor((number % 1000000) / 100000) / 10; // Get the first decimal place  
-      // const formattedViewNumber = millionPart + decimalPart;
-      const decimalPart = number % 1000000;
-      const millionPart = Math.floor(number / 1000000);
-      const truncatedNumber = decimalPart.toString().slice(0, 3);
-      const formattedViewNumber = millionPart + '.' + truncatedNumber;
-        return formattedViewNumber
-        };
-        const formattedLikeNumber = numberOfLike(likes);  
-        const formattedViewNumber = NumberOfView(views); 
+
 
 return(
   <>
@@ -186,10 +149,10 @@ return(
          <button
           className=" text-lg font-display text-black font-medium hover:text-[#0397FF]"
          >
-         <span className="mr-2 md:ml-16 ml-5 underline decoration-pink-800 decoration-4 underline-offset-8">የቀን ስራ</span>ማስታዎቂያ
+         <span className="mr-2 md:ml-16 ml-5 underline decoration-pink-800 decoration-4 underline-offset-8">Louber Work</span>Vacancie Lists
          </button>
          <form onSubmit={submitHandler}>
-         <div class=" mb-4 flex flex-wrap items-stretch absolute md:-mt-4 mt-6 md:ml-0 ml-5 md:right-28 right-10">
+         <div class=" mb-4 flex items-stretch absolute md:-mt-4 mt-10 md:ml-0 ml-5 md:right-28 right-2">
           <input 
           className="bg-[#E3E6E6]  p-3 mr-2 relative rounded-md z-20 " 
             type="date"
@@ -219,168 +182,153 @@ return(
       </form>
      </div>
     </div>
-   <div className=' bg-white md:flex lg:flex pb-20 md:-mt-8 mt-3 md:pl-14 pl-0 md:ml-3 md:mr-0 ml-5 mr-5'>    
-    <div class="relative grid xl:grid-cols-3 ml-5 md:grid-cols-3 grid-cols-1 xl:gap-20 md:gap-20 gap-7 my-3 xl:gap-x-10 md:gap-x-7 gap-x-5">
-    {/* loubers?.vacancies? */}
-        {
-          (loubers?.vacancies?.length)>0
-            ?(
-              loubers?.vacancies?.slice(currentPage * 6 - 6, currentPage * 6).map((values,index)=>{
-             return(
-               <>
-               <div key={index}
-                className=" rounded-xl h-40 md:h-56 xl:h-s6 md:mt-16 mt-16 xl:w-96 md:w-80 sm:w-60 relative md:ml-2 md:mr-0 mr-2 -ml-3 mb-7 md:mb-7">
-                <div className="w-full h-full relative border-gray-600 
-                shadow-md shadow-neutral-400 bg-cover bg-no-repeat rounded-xl "> 
-                 <div className="relative flex justify-center items-center rounded-xl h-full">
-                    <img
-                    className="transition relative w-full h-full cursor-pointer duration-700 rounded-xl border-2 border-b-2 border-gray-600"
-                    //onClick={() => handleView()}
-                    src={`${AddressBaseUrl}/images/${values.image}`} 
-                   //src={`/img/${values.featureImage}`}
+    <div className=' bg-white md:flex lg:flex pb-32 md:-mt-3 mt-14 md:pl-14 pl-0 md:ml-3 md:mr-0 ml-0.5 mr-0'>    
+    <div class="relative grid xl:grid-cols-3 md:grid-cols-3 grid-cols-1 xl:gap-20 md:gap-20 gap-12 my-3 xl:gap-x-10 md:gap-x-7 gap-x-5">
+      {
+      //(product?.promotedProducts?.length)>0
+      (dataVacancy.length>0)
+        ?(
+          //product?.promotedProducts?.slice(page * 6 - 6, page * 6).map((item, index) => {
+            dataVacancy?.slice(currentPage * 6 - 6, currentPage * 6).map((item, index) => {
+            return(
+              <>
+             {/* <div key={index} className=" xl:h-s6 xl:w-96 md:w-80 sm:w-60 relative md:ml-2 ml-2 mr-2 my-20 mb-24 md:mb-7">
+             <div className="w-full h-full relative border-gray-600 
+                 shadow-md shadow-neutral-400 bg-cover bg-no-repeat rounded-xl ">  */}
+            <div key={index} className='xl:h-s6 xl:w-96 md:w-80 sm:w-60 md:ml-2 ml-0 mr-0 my-20 mb-5 md:mb-1 relative md:m-10 mt-16 m-0 rounded-xl shadow-slate-600 shadow-[0_0_15px_0_rgba(0,0,0,0.1)] md:h-[420px] h-[450px]'>
+             <div className='p-0.5 relative rounded-xl text-center justify-center md:h-[420px] h-[450px]'>
+                 <div className="items-center hover:mt-2 duration-500 text-center justify-center rounded-xl md:h-[420px] h-[450px]">
+                  <div className=" h-3 bg-blue-500 w-full rounded-t-xl"></div>
+                  <div className="relative w-full h-6/12">
+                   <div>
+                  {(item.featureImage != "")
+                        ?(
+                   <img
+                    className="relative w-full h-6/12 cursor-pointer border-2 border-b-1 border-gray-400"
+                        src={`/img/${item.featureImage}`} 
+                     // src={`${AddressBaseUrl}/images/${item.featureImage}`}
+                      //onClick={ () => VacancieDetail(item)}
+                     // src={smartPhone}
                       alt="product img not found"
                     />
+                        ):(
+                        <div
+                        className="relative w-full h-52 cursor-pointer border-0 border-b-1 text-center p-3 border-gray-400" >
+                        <p className="font-semibold flex">Job Title:<p className="font-normal text-sm">{dataVacancy[0].name.substring(0,30)}</p> </p>    
+                        <p className=" font-semibold flex" flex>Job type:<p className="font-normal text-sm">{dataVacancy[0].name.substring(0,30)}</p></p>    
+                        <p className=" font-semibold flex">Salary:<p className=" font-normal text-sm">{dataVacancy[0].salary}</p></p>    
+                        <p className=" ml-1 text-sm">Description: {dataVacancy[0].description.substring(0,60)}</p>   
+                        </div>
+                        )}
                     </div>
-                    <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full rounded-xl 
-                     justify-center overflow-hidden bg-gradient-to-r from-green-500 via-amber-300
-                   to-pink-600 opacity-0 transition duration-300 ease-in-out hover:opacity-70"
-                   onClick={()=>VacancieDetail(values)}>
-              <button onClick={() => VacancieDetail(values)} className=" h-12 w-28 rounded-3xl mt-20 text-slate-100 border border-none
-               bg-black">View Detail</button>
+                 <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full rounded-xl text-center
+                    justify-center overflow-hidden bg-gradient-to-r from-green-500 via-amber-300
+                  to-pink-600 opacity-0 transition duration-300 ease-in-out hover:opacity-70"
+                    onClick={()=>VacancieDetail(item)}>
+                   <button onClick={() => VacancieDetail(item)} className=" h-12 w-28 rounded-3xl mt-20 text-slate-100 border border-none
+                  bg-black">View Detail</button>
+                </div>
+                </div>
+             <div className=" h-4/12 w-full text-center justify-center">
+              <div className=" float-left h-8/12 w-full flex text-center justify-center">
+            <div className=" w-2/3 text-left mt-3 p-1 pt-2 pl-3">
+            {/* {(product?.length > 0)
+            ?(
+            product?.map((orgs,index) => 
+           (
+            (orgs.id)!==(item.orgId)?(
+              <> */}
+       <p className=" text-cyan-600 te font-semibold">{dataVacancy[0].name.substring(0,30)}</p>    
+      <p className=" ml-1 text-sm">{dataVacancy[0].description.substring(0,60)}</p>   
+                                {/* </>             
+              ):("No image"))))
+          :("No organization")} */}
          </div>
-        <div className="mt-4 w-full float-left flex">
-          {/* <ul  className='  mt-3 flex'>
-          {(org?.promotedOrgs?.length > 0)
-         ?(
-          org?.promotedOrgs?.map((orgs,index) => 
-        (
-          (orgs.id)==(values.orgId)?(
-               <button 
-             onClick={() => orgHandler(`${orgs.id}`)}
-             >
-             <img className=' w-12 -mt-3 h-10 rounded-full border-2' 
-               src={`${AddressBaseUrl}/images/${orgs?.logo}`}
-               alt='Noimage'/>
-             </button>)
-            :("")  
-        ))):("")}
-          </ul> */}
-           {/* src={`${AddressBaseUrl}/images/${vacancie.image}`}  */}
-       {/* <span className="mt-1 w-10/12 ml-2">{values.title.substring(0,80)}<br />
-           {(org?.promotedOrgs?.length > 0)
-         ?(
-          org?.promotedOrgs?.map((orgs,index) => 
-        (
-          (orgs.id)==(values.orgId)?(
+             {/* src={`${AddressBaseUrl}/images/${vacancie.image}`}  */}
+            <div className=" w-1/3 text-center items-center justify-center">
             <button 
-             className='ml-2 text-[#0099ff]'
-             onClick={() => orgHandler(`${orgs.id}`)}
-             >
-             {orgs.name.substring(0,75)}
-             </button>
-            ):("")  
-        ))):("")}
-        <br />
-       <i className="pl-5">{moment(values.createdAt).fromNow()} </i>
-        </span> */}
-         {/* <i className=" pl-5">{values.createdAt.split('T')[0]}</i>  */}
-         <span className="mt-1 w-11/12 ">
-         <span className=" font-bold"> {values.title?.substring(0,80)}</span>
-           <br />
-          {(org?.promotedOrgs?.length > 0)
-          ?(
-          org?.promotedOrgs?.map((orgs,index) => 
-         (
-          (orgs.id)==(values.orgId)?(
-            <>
-            <button 
-             className=' text-[#0099ff] mt-4 float-left w-full flex'
-             onClick={() => orgHandler(`${orgs.id}`)}
-             >
-             <img className=' w-10 -mt-3 h-10 rounded-full border-1 mr-3' 
-               src={`${AddressBaseUrl}/images/${orgs?.logo}`}
-               alt='Noimage'/>1
-             {orgs.name.substring(0,75)}
-             
-             </button>
-             <br />
-            <i className="">
-          {/* {item.createdAt.split('T')[0]} */}
-          <i className=" ml-12">{moment(values.createdAt).fromNow()} </i>
-          </i>
-            </>             
-            ):(""))))
-        :("")}
-        </span>
-        <span className=" float-right mr-1 flex flex-row text-center w-3/12 pt-3 mb-[-0.5]">
-        <span className="inline-block mx-auto">
-         {(likes >= 100000)
-                   ?(
-            <i className="whitespace-pre-wrap overflow-wrap break-all   text-amber-500">{formattedLikeNumber}m</i> 
-                   ):(
-             <i className="whitespace-pre-wrap overflow-wrap break-all   text-amber-500">{likes}</i> 
-                   )}
-          <br />
-         <img onClick={handleLike} disabled={hasLiked} className="w-5 h-4 " src={`${like}`}/>
-        </span>
-        <span className="inline-block mx-auto">
-        {(views >= 100000)
-                   ?(
-            <i className="whitespace-pre-wrap overflow-wrap break-all   text-amber-500">{formattedViewNumber}m</i> 
-                   ):(
-            <i className="whitespace-pre-wrap overflow-wrap break-all text-amber-500">{views}</i> 
-                   )}
-        <br />
-         <img className="w-5 h-4  " src={`${show}`}/>
-        </span>
-     </span> 
-         </div>
+              className=' text-[#0099ff] float-left w-11/12 items-center text-center justify-center flex'
+              onClick={() => orgHandler(`${dataVacancy[0].id}`)}
+              >
+              <img className=' w-11/12 h-24 rounded-r-3xl rounded-t-3xl border-1 ml-1 mt-2' 
+               // src={`${AddressBaseUrl}/images/${orgs?.logo}`}
+               src={`/img/${item.featureImage}`} 
+                alt='Noimage'/>
+              </button>
+              </div>
+            {/* <span className=" float-right mr-1 flex flex-row text-center w-3/12 pt-3 mb-[-0.5]">
+              <span className="inline-block mx-auto">
+              {(likes >= 100000)
+                        ?(
+                  <i className="whitespace-pre-wrap overflow-wrap break-all   text-amber-500">{formattedLikeNumber}m</i> 
+                        ):(
+                        <i className="whitespace-pre-wrap overflow-wrap break-all   text-amber-500">{likes}</i> 
+                        )}
+                <br />
+              <img onClick={handleLike} disabled={hasLiked} className="w-5 h-4 " src={`${like}`}/>
+             </span>
+             <span className="inline-block mx-auto">
+                {(views >= 100000)
+                          ?(
+                    <i className="whitespace-pre-wrap overflow-wrap break-all   text-amber-500">{formattedViewNumber}m</i> 
+                          ):(
+                    <i className="whitespace-pre-wrap overflow-wrap break-all text-amber-500">{views}</i> 
+                          )}
+                <br />
+                <img className="w-5 h-4  " src={`${show}`}/>
+             </span>
+            </span>    */}
+           </div> 
+        <div className="absolute md:flex p-3 w-full md:bottom-0 bottom-7 h-10 md:pt-2 pt-0 text-center justify-center rounded-b-xl text-gray-700 -ml-0.5">
+      <p className=" mr-1">Choose</p><p className=" mr-1 text-cyan-600">{dataVacancy[0].name.substring(0,30)}</p><p>products</p>
         </div>
-       </div>
-      </>
-      )})):
-           (<><div className=" text-xl font-semibold flex justify-center mt-5 ml-32">------ የቀን ሥራ  የለም! ------</div></>)
-            }
-          <br /><br />
+          </div>
          </div>
-        </div> 
-      <div>
-       {loubers?.vacancies?.length > 0 && 
+     </div>
+    <div className=" font-bold w-full mt-5 text-left ml-1 "> 
+    <p className=" text-lg">{item.name.substring(0,80)}</p>
+    <p className=" ml-1 text-sm">{dataVacancy[0].description.substring(0,60)}...</p>   
+    <span className=" w-full ml-1 text-sm underline text-center">{item?.date}</span>  
+    </div>
+    </div>
+    </>)})):(<><div className=" text-xl font-semibold flex justify-center mt-5 ml-32">
+                   ------ No Vacancy ! ------</div></>)}
+   </div>
+  </div>
+      <br />
+      {loubers?.loubers?.length > 0 && 
        <div className=" justify-center ml-10 mt-10">
-        {(loubers?.vacancies?.length >=currentPage * 6)?(
+        {(loubers?.loubers?.length > currentPage * 6)?(
            <p className='text-sm text-gray-700 mb-7'>
-            ክጠቅላላ <span className='font-medium ml-2 mr-2'> {loubers?.vacancies?.length} </span>
-            የቀንስራ ማስታወቂያዎች ዝርዝር ውስጥ ከቁጥር <span className='font-medium ml-2 mr-2'>{currentPage * 6 - 6}</span>
-             እስከ ቁጥር <span className='font-medium ml-2 mr-2'> {currentPage * 6} </span> የሚገኙ የቀንስራ ማስታወቂያዎች ዝርዝር  
+            From all list<span className='font-medium ml-2 mr-2'> {loubers?.loubers?.length} </span>
+             vacancies.Some lists from <span className='font-medium ml-2 mr-2'>{currentPage * 6 - 6}</span>
+             number to <span className='font-medium ml-2 mr-2'> {currentPage * 6} </span> number  
              </p>
           ):<p className='text-sm text-gray-700 mb-7'>
-              <p className="mr-2">(መጨረሻው ነው)</p> ጠቅላላ <span className='font-medium ml-2 mr-2'> {loubers?.vacancies?.length} </span>
-              የቀንስራ ማስታወቂያዎች ብቻ ይገኛሉ::  
+              <p className="mr-2">(the end)</p> Generally <span className='font-medium ml-2 mr-2'> {loubers?.loubers?.length} </span>
+               vacancies only.
             </p>
           }
-      
         <nav
           className='relative z-0  inline-flex rounded-md shadow-sm -space-x-px'
           aria-label='Pagination'
         >
-          <button
+        <button
           onClick={() => selectPageHandler(currentPage - 1)}
             className='relative inline-flex items-center px-2 py-2 rounded-l-md border
             bg-[#fe9900] border-gray-300  text-sm font-medium text-gray-500 hover:bg-gray-50'
           >
-            <span className="font-bold">ምልስ</span>
-          </button>
-
-          <button
-          onClick={() => selectPageHandler(currentPage + 1)}
+            <span className="font-bold">back</span>
+        </button>
+         <button
+            onClick={() => selectPageHandler(currentPage + 1)}
             className='relative inline-flex items-center px-2 py-2 rounded-r-md border
-             border-gray-300 bg-[#fe9900] text-sm font-medium text-gray-500 hover:bg-gray-50'
-          >
-            <span className=" font-bold">ቅጣይ</span>
-          </button>
+             border-gray-300 bg-[#fe9900] text-sm font-medium text-gray-500 hover:bg-gray-50'>
+            <span className=" font-bold">next</span>
+         </button>
         </nav>
-      </div>}
-    </div>
+      </div>
+      }
         {vacancieDel && (
           <> 
             <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none -mt-6 border border-grey-100">
@@ -391,9 +339,9 @@ return(
                   <div className="flex justify-end p-1">
                   {/* Share button */}
                   <span className="flex flex-row ">
-                  <button className="m-2" onClick={handleFBShareClick}>           
+                  {/* <button className="m-2" onClick={handleFBShareClick}>           
                     <img className="w-14 h-10 " src={fbicon} alt=""/>
-                   </button>
+                   </button> */}
                   <button className="m-2" onClick={handleTGShareClick}>
                     <img className="w-14 h-10" src={tgicon} alt=""/>
                    </button>
@@ -419,13 +367,13 @@ return(
                    {/* <p className="text-lg font-bold">{louberWorkDetail?.name}</p>  */}
                     <div class="bg-white rounded-md max-w-4xl mx-auto p-2 space-y-2 -mt-2 shadow-lg">
                     <h3 class="border-t mb-2 pt-3 font-semibold underline">Name: <span >EplusApp</span></h3> 
-                    <h3 className="flex"><h3 class="mb-1 font-semibold underline">የስራው መጠሪያ: </h3> <span >{louberWorkDetail?.title}</span></h3>
-                    <h3 className="flex"><h3 class="mb-1 font-semibold underline">የስራው አይነት:</h3> <span >{louberWorkDetail?.type}</span></h3>
-                    <h3 className="flex"><h3 class="mb-1 font-semibold underline">የስራ ቀን/ስአት:</h3><span >ሙሉ ቀን</span></h3>
-                    <h3 className="flex"><h3 class="mb-1 font-semibold underline">የቀን ክፍያ: </h3><span> {louberWorkDetail?.price}</span></h3>
-                    <h3 className="flex"><h3 class="mb-1 font-semibold underline">የምዝገባ ማብቂያ ቀን: </h3><span >{louberWorkDetail?.closingDate?.split('T')[0]}-{louberWorkDetail?.closingDate?.split('T')[0]}</span></h3>
+                    <h3 className="flex"><h3 class="mb-1 font-semibold underline">Job Title: </h3> <span >{louberWorkDetail?.title}</span></h3>
+                    <h3 className="flex"><h3 class="mb-1 font-semibold underline">Job Type:</h3> <span >{louberWorkDetail?.type}</span></h3>
+                    <h3 className="flex"><h3 class="mb-1 font-semibold underline">Work Day/Time:</h3><span >Full Day</span></h3>
+                    <h3 className="flex"><h3 class="mb-1 font-semibold underline">Payment: </h3><span> {louberWorkDetail?.price}</span></h3>
+                    <h3 className="flex"><h3 class="mb-1 font-semibold underline">Register Date: </h3><span >{louberWorkDetail?.closingDate?.split('T')[0]}-{louberWorkDetail?.closingDate?.split('T')[0]}</span></h3>
                      <div class="pt-2">
-                     <h3 class="font-semibold -ml-56 underline"> ማብራሪያ:</h3>
+                     <h3 class="font-semibold -ml-56 underline"> Description:</h3>
                      <p class=" mt-2">{louberWorkDetail?.description}</p>
                     </div>
                     {(org?.promotedOrgs?.length > 0)

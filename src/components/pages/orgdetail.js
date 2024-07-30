@@ -6,6 +6,8 @@
   import { viewOrganization } from '../../actions/orgAction';
   import { useNavigate } from 'react-router-dom';
   import {dataVacancy} from '../vacaData';
+  import logoImage from '../../img/logobg1.png';
+
    function Orgdetail() {
    const dispatch = useDispatch();
    const navigate = useNavigate();
@@ -14,27 +16,14 @@
     const [data, setData] =useState(dataVacancy || '');
     console.log("organization yibeee list : ", org?.promotedOrgs);
     const [descrip, setDescrip] = useState(
-      `መለያ ካርታን መሰርት አድርጎ በተሰራው ገጽ ላይ ፍልግ ነው። ኢጵላሣጵ አድራሻ ልዩ እና ትክክለኛ የሆነ የግለሰብ የመንግስት 
-      መስሪያ ቤቶችን የንግድ ተቋማትን፡እንዲሁም የተለያዪ በከተማው ውስጥ የሚገኙ የግለሰብ ቦታወችን መገኛ በቀላሉ ካርታ ላይ ለይቶ ለማወቅ:
-      ይህ ኢጵላሣጵ ዌብ ሳይት ነው ኢጵላሣጵ የራሱ የሆነ ዌብሳይት አልምቶ አሁን ደሞ ለግለሰቦች እና ለድርጅቶች የየራሳቸው የሆነ ዌብሳይት ለማልማት 
-      ሙሉ ዝግጅቱን ጨርሷል። እርሶም እድሉን ይጠቀሙ። ኢኮሜርስ ዌብ ሳይት በበይነመረቡ ላይ የእርስዎ ዲጂታል የመደብር ፊት ነው። በገዢ እና በሻጭ መካከል ያለውን ግብይት ያመቻቻል ያፋጥናል. 
-      የመስመር ላይ ደንበኞችዎ ምርጫቸውን አድርገው መጠቀም ይችላሉ።
-      መለያ ካርታን መሰርት አድርጎ በተሰራው ገጽ ላይ ፍልግ ነው። ኢጵላሣጵ አድራሻ ልዩ እና ትክክለኛ የሆነ የግለሰብ የመንግስት 
-      መስሪያ ቤቶችን የንግድ ተቋማትን፡እንዲሁም የተለያዪ በከተማው ውስጥ የሚገኙ የግለሰብ ቦታወችን መገኛ በቀላሉ ካርታ ላይ ለይቶ ለማወቅ:
-      ይህ ኢጵላሣጵ ዌብ ሳይት ነው ኢጵላሣጵ የራሱ የሆነ ዌብሳይት አልምቶ አሁን ደሞ ለግለሰቦች እና ለድርጅቶች የየራሳቸው የሆነ ዌብሳይት ለማልማት 
-      ሙሉ ዝግጅቱን ጨርሷል። እርሶም እድሉን ይጠቀሙ። ኢኮሜርስ ዌብ ሳይት በበይነመረቡ ላይ የእርስዎ ዲጂታል የመደብር ፊት ነው። በገዢ እና በሻጭ መካከል ያለውን ግብይት ያመቻቻል ያፋጥናል. 
-      የመስመር ላይ ደንበኞችዎ ምርጫቸውን አድርገው መጠቀም ይችላሉ።
-    
-      መለያ ካርታን መሰርት አድርጎ በተሰራው ገጽ ላይ ፍልግ ነው። ኢጵላሣጵ አድራሻ ልዩ እና ትክክለኛ የሆነ የግለሰብ የመንግስት 
-      መስሪያ ቤቶችን የንግድ ተቋማትን፡እንዲሁም የተለያዪ በከተማው ውስጥ የሚገኙ የግለሰብ ቦታወችን መገኛ በቀላሉ ካርታ ላይ ለይቶ ለማወቅ:
-      ይህ ኢጵላሣጵ ዌብ ሳይት ነው ኢጵላሣጵ የራሱ የሆነ ዌብሳይት አልምቶ አሁን ደሞ ለግለሰቦች እና ለድርጅቶች የየራሳቸው የሆነ ዌብሳይት ለማልማት 
-      ሙሉ ዝግጅቱን ጨርሷል። እርሶም እድሉን ይጠቀሙ። ኢኮሜርስ ዌብ ሳይት በበይነመረቡ ላይ የእርስዎ ዲጂታል የመደብር ፊት ነው። በገዢ እና በሻጭ መካከል ያለውን ግብይት ያመቻቻል ያፋጥናል. 
-      የመስመር ላይ ደንበኞችዎ ምርጫቸውን አድርገው መጠቀም ይችላሉ።
-      መለያ ካርታን መሰርት አድርጎ በተሰራው ገጽ ላይ ፍልግ ነው። ኢጵላሣጵ አድራሻ ልዩ እና ትክክለኛ የሆነ የግለሰብ የመንግስት 
-      መስሪያ ቤቶችን የንግድ ተቋማትን፡እንዲሁም የተለያዪ በከተማው ውስጥ የሚገኙ የግለሰብ ቦታወችን መገኛ በቀላሉ ካርታ ላይ ለይቶ ለማወቅ:
-      ይህ ኢጵላሣጵ ዌብ ሳይት ነው ኢጵላሣጵ የራሱ የሆነ ዌብሳይት አልምቶ አሁን ደሞ ለግለሰቦች እና ለድርጅቶች የየራሳቸው የሆነ ዌብሳይት ለማልማት 
-      ሙሉ ዝግጅቱን ጨርሷል። እርሶም እድሉን ይጠቀሙ። ኢኮሜርስ ዌብ ሳይት በበይነመረቡ ላይ የእርስዎ ዲጂታል የመደብር ፊት ነው። በገዢ እና በሻጭ መካከል ያለውን ግብይት ያመቻቻል ያፋጥናል. 
-      የመስመር ላይ ደንበኞችዎ ምርጫቸውን አድርገው መጠቀም ይችላሉ።`);
+`      Eplasap Trade Co., Ltd. draft of the new business licensing category in Ethiopia
+      Information or software creation (including design, production, development, implementation, web design and development) and
+      data processing and database organization works, preparation of draft information resources, information
+        Creating databases, making them easily searchable, keeping up with the times, software design, development,
+        implementation, software installation, commissioning and testing, everything has been completed before entering the country
+        application software customization, computer network design, cabling; implementation and get
+        Proof of competence to do other computer-related work from ኢ/ቴ/ሚ and የን/ሥ/ፈቃድ
+        from ን/ገ/ል/ሚ.`)
   // console.log("organization logo name : ", org?.promotedOrgs && org?.promotedOrgs?.name);
   useEffect(() =>{
     dispatch(viewOrganization());
@@ -70,7 +59,7 @@
     <div className="hidden md:flex items-center py-3 mb-4 ">
       <button
         className=" text-lg font-display text-black font-medium hover:text-[#0099ff]">
-        <span className="mr-2 ml-7 underline decoration-pink-800 decoration-4 underline-offset-8">ድርጅቶች</span>
+        <span className=" ml-7 underline decoration-pink-800 decoration-4 underline-offset-8 mr-1">Organaizations</span> Lists
        </button>
       </div>
      <div className='relative bg-white w-full  h-full md:flex lg:flex pb-8'>   
@@ -78,12 +67,15 @@
          <h1 className='md:text-3xl text-lg italic'>{`${org?.promotedOrgs && org?.promotedOrgs[currentIndex]?.name}`}</h1>
          <h1 className='md:flex pt-0 md:pt-6 font-semibold lg:pt-6'  onClick={() => orgHandler(`${org?.promotedOrgs && org?.promotedOrgs[currentIndex]?.id}`)}>
          {/* {`${org?.promotedOrgs && org?.promotedOrgs[currentIndex]?.businessSector}`} */}
-         {org?.promotedOrgs && org?.promotedOrgs[currentIndex]?.description}
-         {/* {descrip} */}
+         {/* {org?.promotedOrgs && org?.promotedOrgs[currentIndex]?.description} */}
+         <p id="custom-scroll" className=" h-11/12 w-11/12 mt-5 shadow-lg bg-slate-200 p-5 justify-center rounded-md max-h-72 overflow-y-auto scrollbar-thumb-indigo-500 scrollbar-track-gray-200 "> 
+                 {descrip}
+                 {/* {org?.promotedOrgs && org?.promotedOrgs[currentIndex]?.description} */}
+              </p> 
          </h1>
         <div className='pt-0 md:pt-4 lg:pt-4'>
           <a>
-            <button className='bg-[#0099ff] text-white font-semibold md:py-1 lg:py-1 lg:px-12 md:px-12 px-2 h-full' onClick={() => orgHandler(`${org?.promotedOrgs && org?.promotedOrgs[currentIndex]?.id}`)}>ዝርዝር መረጃ</button>
+            <button className='bg-[#0099ff] text-white font-semibold md:py-1 lg:py-1 lg:px-12 md:px-12 px-2 h-full' onClick={() => orgHandler(`${org?.promotedOrgs && org?.promotedOrgs[currentIndex]?.id}`)}>Data List</button>
           </a>           
           {/* <a>
             <button className='bg-[#0397FF] text-white font-semibold md:py-1 lg:py-1 lg:px-12 md:px-12 px-2 h-full'  onClick={() => orgHandler()}>ዝርዝር መረጃ</button>
@@ -94,20 +86,22 @@
         // style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
         className='md:w-5/12 h-full rounded-2xl bg-center bg-cover duration-500 md:-mt-10 mt-0 pt-1'
       >
-    <img src={`${AddressBaseUrl}/images/${org?.promotedOrgs && org?.promotedOrgs[currentIndex]?.logo}`} className='h-52 md:h-96 lg:h-96 w-full' alt=''
+    <img className='h-52 md:h-96 lg:h-96 w-full' alt=''
+    // src={`${AddressBaseUrl}/images/${org?.promotedOrgs && org?.promotedOrgs[currentIndex]?.logo}`} 
+         src={logoImage} 
         onClick={() => orgHandler(`${org?.promotedOrgs && org?.promotedOrgs[currentIndex]?.id}`)}
         /> 
     <div className='flex mb-0 justify-center py-2 pb-8 ml-8'>
       {
-      (org?.promotedOrgs?.length)>0
+      (data?.length)>0
         ?(
-         org?.promotedOrgs?.map((slide, slideIndex) => (
+         data?.map((slide, slideIndex) => (
           <div
             key={slideIndex}
             onClick={() => goToSlide(slideIndex)}
             className='text-2xl cursor-pointer'
           >
-          {(org?.promotedOrgs?.length)<=6
+          {(data?.length)<=6
           ?(
             <button className=' bg-white border-2 w-9 h-9 rounded-xl pb-3 m-1'>
           {slideIndex+1}
@@ -120,7 +114,7 @@
         }
       {/* Left Arrow */}
 
-       {(org?.promotedOrgs?.length)>6
+       {(data?.length)>6
           ?(
          <> 
         <button className=' bg-white border-2 w-9 h-9 rounded-xl font-semibold  m-1'>
@@ -138,7 +132,7 @@
           <RxDotFilled className=' font-bold'/> 
           </button>
           <button className=' bg-white border-2 w-9 h-9 rounded-xl pb-3 m-1'>
-           {org?.promotedOrgs?.length}
+           {data?.length}
            </button>
            </>
           ):""
@@ -154,14 +148,14 @@
      </div>
    </div>
      {
-      (org?.promotedOrgs?.length)>0
+      (data?.length)>0
         ?(
           <>
-       <p className=" float-right p-3 -mt-10 md:ml-0 ml-14 md:mr-28">ጠቅላላ <span className='font-bold -mt-4'>
-         {org?.promotedOrgs?.length} </span>
-         ድርጅቶች ብቻ ይገኛሉ::  
+       <p className=" float-right p-3 -mt-10 md:ml-0 ml-14 md:mr-28">Generally <span className='font-bold -mt-4'>
+         {data?.length} </span>
+         organaizations is found.  
         </p>
-        </>):("ምንም ድርጅት የለም")}
+        </>):("No Any Organization")}
     </div>
   </div>
 </div>

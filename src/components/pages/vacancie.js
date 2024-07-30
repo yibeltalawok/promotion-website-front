@@ -18,9 +18,9 @@ import moment from 'moment';
 import queryString from 'query-string';
 import { generateTelegramShareLink } from './generateTelegramShareLink';
 import tgicon from '../../icons/Telegram_logo.svg.webp';
-import fbicon from '../../icons/fbicon.png';
-import show from '../../icons/show.png';
-import like from '../../icons/like.png';
+import image1 from '../../img/image1.jpeg';
+// import show from '../../icons/show.png';
+// import like from '../../icons/like.png';
 
     const Vacancie = (message) =>{
     const dispatch = useDispatch();
@@ -36,6 +36,7 @@ import like from '../../icons/like.png';
     const { vacancies } = useSelector(
       (state) => state.vacancies
    );
+   console.log("dataVacancy=",vacancies)
 //    const { likes } = useSelector(
 //     (state) => state.likes
 //  );
@@ -68,7 +69,7 @@ import like from '../../icons/like.png';
         );
 const [data, setData] =useState(dataVacancy || '');
 useEffect(() => {
-  setData(dataVacancy);
+  dispatch(viewVacancies());
 }, [dataVacancy])
 // console.log("all vacancies are : ", data[0]);
 useEffect(()=>{
@@ -98,62 +99,16 @@ useEffect(() =>{
 const orgHandler=(id)=>{
     navigate("org/"+id)
 }
-const [page, setPage] = useState(1)
-const selectPageHandler = (selectedPage) => {
+  const [page, setPage] = useState(1)
+  const selectPageHandler = (selectedPage) => {
   // alert(data.length+","+selectedPage)
   // console.log("next button cliked : ",selectedPage);
   if (selectedPage >= 1 && (selectedPage * 6)-6 < vacancies?.vacancies?.length  && selectedPage !== page) {
     setPage(selectedPage)
-  }}
-  //       //  Count Number Of View              
-  // const [views, setViews] = useState(0);
-
-  // useEffect(() => {
-  //   // Function to increment the view count
-  //   const incrementViews = () => {
-  //     setViews((prevViews) => {
-  //       const newViews = prevViews + 1;
-  //       localStorage.setItem('viewCount', newViews.toString()); // Store the updated view count in local storage
-  //       return newViews;
-  //     });
-  //   };
-
-  //   // Read the view count from local storage on component mount
-  //   const storedViewCount = localStorage.getItem('viewCount');
-  //   if (storedViewCount) {
-  //     setViews(parseInt(storedViewCount, 10));
-  //   }
-
-  //   // Increment the view count every second
-  //   const interval = setInterval(incrementViews, 1000);
-  //   // Clean up the interval when the component unmounts
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, []); // Run the effect only on component mount
-
-  // const [views, setViews] = useState(0);
-
-  // useEffect(() => {
-  //   // Update the view count when the component mounts
-  //   setViews((prevViews) => prevViews + 1);
-  // }, []);
-
-  // useEffect(() => {
-  //   // Store the view count in local storage whenever it changes
-  //   localStorage.setItem('viewCount', views.toString());
-  // }, [views]);
-     // Like count
+   }}
      const [likes, setLikes] = useState(0);
      const [hasLiked, setHasLiked] = useState(false);
-   
-    //  useEffect(() => {
-    //    // Check if the user has already liked the post
-    //    const liked = localStorage.getItem('postViewed');
-    //    if (liked === 'true') {
-    //      setHasLiked(true);
-    //    }
-    //  }, []);
+  
      const handleLike = (id) => {
       // alert(id)
        if (!hasLiked) {
@@ -173,21 +128,9 @@ const selectPageHandler = (selectedPage) => {
             dispatch(updateLike(dataValue));
            setHasLiked(false);
           }};
-   // View count
-   const [views, setViews] = useState(0);
-   const [hasView, setHasView] = useState(false);
-  //  useEffect(() => {
-  //    // Check if the user has already liked the post
-  //    const liked = localStorage.getItem('postViewed');
-  //    if (liked === 'true') {
-  //     setHasView(true);
-  //    }}, []);
-  //  const handleView = () => {
-  //    if (!hasView) {
-  //     setViews(views + 1);
-  //      setHasView(true);
-  //      localStorage.setItem('postViewed', 'true');
-  //    }};
+     // View count
+     const [views, setViews] = useState(0);
+     const [hasView, setHasView] = useState(false);
     const VacancieDetail = (data) =>{
       dispatch(addToDetail(data));
       setVacancieDel(true);
@@ -246,10 +189,10 @@ return(
          <button
           className=" text-lg font-display text-black font-medium hover:text-[#0397FF]"
          >
-          <span className="mr-2 md:ml-16 ml-5 underline decoration-pink-800 decoration-4 underline-offset-8">የስራ</span>ማስታዎቂያ
+          <span className="mr-2 md:ml-16 ml-5 underline decoration-pink-800 decoration-4 underline-offset-8 ">Vaccancies</span>Lists
          </button>
          <form onSubmit={submitHandler}>
-         <div class=" mb-4 flex flex-wrap items-stretch absolute md:-mt-4 mt-6 md:ml-0 ml-5 md:right-28 right-10">
+         <div class=" mb-4 flex items-stretch absolute md:-mt-4 mt-14 md:ml-0 ml-5 md:right-28 right-2">
           <input
            className="bg-[#E3E6E6]  p-3 relative mr-2 rounded-md z-20" 
              type="date"
@@ -286,127 +229,132 @@ return(
      </form>
     </div>
   </div>
- <div className=' bg-white  md:flex lg:flex pb-32 md:mt-0 mt-3 md:pl-14 pl-0 md:ml-3 md:mr-0 ml-5 mr-5'>    
-  <div class="relative grid xl:grid-cols-3 ml-5 md:grid-cols-3 grid-cols-1 xl:gap-20 md:gap-20 gap-7 my-3 xl:gap-x-10 md:gap-x-7 gap-x-5">
-    {(vacancies?.vacancies?.length > 0)
-      ?(
-        vacancies?.vacancies?.slice(page *6 - 6, page * 6).map((vacancie,index) => { 
-          return(
-           <>
-            <div key={index} 
-                 className=" h-40 md:h-56 xl:h-s6 md:mt-8 mt-16 xl:w-96 md:w-80 sm:w-60 relative md:ml-2 md:mr-0 mr-2 -ml-3 mb-7 md:mb-10">
+  <div className=' bg-white md:flex lg:flex pb-32 md:-mt-3 mt-14 md:pl-14 pl-0 md:ml-3 md:mr-0 ml-0.5 mr-0'>    
+    <div class="relative grid xl:grid-cols-3 md:grid-cols-3 grid-cols-1 xl:gap-20 md:gap-20 gap-12 my-3 xl:gap-x-10 md:gap-x-7 gap-x-5">
+      {
+      //(product?.promotedProducts?.length)>0
+      (dataVacancy.length>0)
+        ?(
+          //product?.promotedProducts?.slice(page * 6 - 6, page * 6).map((item, index) => {
+            dataVacancy?.slice(page * 6 - 6, page * 6).map((item, index) => {
+            return(
+              <>
+             {/* <div key={index} className=" xl:h-s6 xl:w-96 md:w-80 sm:w-60 relative md:ml-2 ml-2 mr-2 my-20 mb-24 md:mb-7">
              <div className="w-full h-full relative border-gray-600 
-             shadow-md shadow-neutral-400 bg-cover bg-no-repeat rounded-xl "> 
-              <div className="relative flex justify-center items-center h-full rounded-xl">
-              <img 
-               className="transition relative w-full h-full cursor-pointer duration-700 rounded-xl border-2 border-b-2 border-gray-600"
-               alt="images not found"
-               src={`${AddressBaseUrl}/images/${vacancie.image}`} 
-              //src={`/img/${vacancie.featureImage}`}
-              />
-              </div>
-            <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full rounded-xl 
-                 justify-center overflow-hidden bg-gradient-to-r from-green-500 via-amber-300
-                 to-pink-600 opacity-0 transition duration-300 ease-in-out hover:opacity-70"
-                 onClick={()=>VacancieDetail(vacancie)}>
-              <button onClick={() => VacancieDetail(vacancie)} className=" h-12 w-28 rounded-3xl mt-20 text-slate-100 border border-none
-               bg-black">View Detail</button>
-          </div>
-          {/* <div className=" h-auto"> */}
-          <div className="mt-4 flex flex-row w-full ">
-          {/* <ul  className='  mt-3 flex'>
-          {(org?.promotedOrgs?.length > 0)
-         ?(
-          org?.promotedOrgs?.map((orgs,index) => 
-        (
-          (orgs.id)==(vacancie.orgId)?(
-               <button className=" " 
-             onClick={() => orgHandler(`${orgs.id}`)}
-             >
-             <img className=' w-12 -mt-3 h-10 rounded-full border-2' 
-               src={`${AddressBaseUrl}/images/${orgs?.logo}`}
-               alt='Noimage'/>
-             </button>)
-            :("")  
-        ))):("")}
-          </ul> */}
-           {/* src={`${AddressBaseUrl}/images/${vacancie.image}`}  */}
-        <div className="mt-1 flex-1">
-        <div className="h-auto">
-         <span className=" font-bold"> {vacancie.title?.substring(0,80)}</span>
-           <br />
-          {(org?.promotedOrgs?.length > 0)
-          ?(
-          org?.promotedOrgs?.map((orgs,index) => 
-         (
-          (orgs.id)==(vacancie.orgId)?(
-            <>
+                 shadow-md shadow-neutral-400 bg-cover bg-no-repeat rounded-xl ">  */}
+            <div key={index} className='xl:h-s6 xl:w-96 md:w-80 sm:w-60 md:ml-2 ml-0 mr-0 my-20 mb-5 md:mb-1 shadow-slate-600 relative md:m-10 mt-16 m-0 rounded-xl shadow-[0_0_15px_0_rgba(0,0,0,0.1)] md:h-[420px] h-[450px]'>
+             <div className='p-0.5 relative rounded-xl text-center justify-center md:h-[420px] h-[450px]'>
+                 <div className="items-center hover:mt-2 duration-500 text-center justify-center rounded-xl md:h-[420px] h-[450px]">
+                  <div className=" h-3 bg-blue-500 w-full rounded-t-xl"></div>
+                  <div className="relative w-full h-6/12">
+                   <div>
+                  {(item.featureImage != "")
+                        ?(
+                   <img
+                    className="relative w-full h-56 cursor-pointer border-2 border-b-1 border-gray-400"
+                        src={image1} 
+                     // src={`${AddressBaseUrl}/images/${item.featureImage}`}
+                      //onClick={ () => VacancieDetail(item)}
+                     // src={smartPhone}
+                      alt="product img not found"
+                    />
+                        ):(
+                        <div
+                        className="relative w-full h-52 cursor-pointer border-2 border-b-1 text-center p-3 border-gray-400" >
+                        <p className="font-semibold flex">Job Title:<p className="font-normal text-sm">{dataVacancy[0].name.substring(0,30)}</p> </p>    
+                        <p className=" font-semibold flex" flex>Job type:<p className="font-normal text-sm">{dataVacancy[0].name.substring(0,30)}</p></p>    
+                        <p className=" font-semibold flex">Salary:<p className=" font-normal text-sm">{dataVacancy[0].salary}</p></p>    
+                        <p className=" ml-1 text-sm">Description: {dataVacancy[0].description.substring(0,60)}</p>   
+                        </div>
+                        )}
+
+                    </div>
+                 <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full rounded-xl text-center
+                    justify-center overflow-hidden bg-gradient-to-r from-green-500 via-amber-300
+                  to-pink-600 opacity-0 transition duration-300 ease-in-out hover:opacity-70"
+                    onClick={()=>VacancieDetail(item)}>
+                   <button onClick={() => VacancieDetail(item)} className=" h-12 w-28 rounded-3xl mt-20 text-slate-100 border border-none
+                  bg-black">View Detail</button>
+                </div>
+                </div>
+             <div className=" h-4/12 w-full text-center justify-center">
+              <div className=" float-left h-8/12 w-full flex text-center justify-center">
+            <div className=" w-2/3 text-left mt-3 p-1 pt-2 pl-3">
+            {/* {(product?.length > 0)
+            ?(
+            product?.map((orgs,index) => 
+           (
+            (orgs.id)!==(item.orgId)?(
+              <> */}
+       <p className=" text-cyan-600 te font-semibold">{dataVacancy[0].name.substring(0,30)}</p>    
+      <p className=" ml-1 text-sm">{dataVacancy[0].description.substring(0,60)}</p>   
+                                {/* </>             
+              ):("No image"))))
+          :("No organization")} */}
+         </div>
+             {/* src={`${AddressBaseUrl}/images/${vacancie.image}`}  */}
+            <div className=" w-1/3 text-center items-center justify-center">
             <button 
-             className='text-[#0099ff] float-left w-full flex mt-3'
-             onClick={() => orgHandler(`${orgs.id}`)}
-             >
-             <img className=' w-10 -mt-3 h-10 rounded-full border-1 mr-3' 
-               src={`${AddressBaseUrl}/images/${orgs?.logo}`}
-               alt='Noimage'/>1
-             {orgs.name.substring(0,75)}   
-             </button>
-             <br />
-            <i className="">
-          {/* {item.createdAt.split('T')[0]} */}
-          <i className=" mt-3">{moment(vacancie.createdAt).fromNow()} </i>
-          </i>
-            </>             
-            ):(""))))
-        :("")}
+              className=' text-[#0099ff] float-left w-11/12 items-center text-center justify-center flex'
+              onClick={() => orgHandler(`${dataVacancy[0].id}`)}
+              >
+              <img className=' w-11/12 h-24 rounded-r-3xl rounded-t-3xl border-1 ml-1 mt-2' 
+               // src={`${AddressBaseUrl}/images/${orgs?.logo}`}
+               src={`/img/${item.featureImage}`} 
+                alt='Noimage'/>
+              </button>
+              </div>
+            {/* <span className=" float-right mr-1 flex flex-row text-center w-3/12 pt-3 mb-[-0.5]">
+              <span className="inline-block mx-auto">
+              {(likes >= 100000)
+                        ?(
+                  <i className="whitespace-pre-wrap overflow-wrap break-all   text-amber-500">{formattedLikeNumber}m</i> 
+                        ):(
+                        <i className="whitespace-pre-wrap overflow-wrap break-all   text-amber-500">{likes}</i> 
+                        )}
+                <br />
+              <img onClick={handleLike} disabled={hasLiked} className="w-5 h-4 " src={`${like}`}/>
+             </span>
+             <span className="inline-block mx-auto">
+                {(views >= 100000)
+                          ?(
+                    <i className="whitespace-pre-wrap overflow-wrap break-all   text-amber-500">{formattedViewNumber}m</i> 
+                          ):(
+                    <i className="whitespace-pre-wrap overflow-wrap break-all text-amber-500">{views}</i> 
+                          )}
+                <br />
+                <img className="w-5 h-4  " src={`${show}`}/>
+             </span>
+            </span>    */}
+           </div> 
+        <div className="absolute md:flex p-3 w-full md:bottom-0 bottom-7 h-10 md:pt-2 pt-0 text-center justify-center rounded-b-xl text-gray-700 -ml-0.5">
+      <p className=" mr-1">Choose</p><p className=" mr-1 text-cyan-600">{dataVacancy[0].name.substring(0,30)}</p><p>products</p>
         </div>
-        </div>
-        <div  className=" bg-slate-50 border-2 flex-2 mr-0.5 h-12 p-0.5 rounded shadow">
-        <div className="h-aouto">
-           {(likes >= 100000)
-                   ?(
-           <i className="whitespace-pre-wrap overflow-wrap break-all text-amber-500">{formattedLikeNumber}m</i> 
-                   ):(
-           <i className="whitespace-pre-wrap overflow-wrap break-all text-amber-500">{likes}</i> 
-                   )}
-          <br />
-          {/* disabled={hasLiked} */}
-         <img onClick={() => handleLike(vacancie.id)}  className="w-5 h-4 cursor-pointer" src={`${like}`}/>
-        </div>
-       </div>
-       <div  className="bg-slate-50 border-2 rounded flex-3 h-12 text-center p-0.5 shadow">
-        <div className="h-auto">
-                   {(views >= 100000)
-                   ?(
-            <i className="whitespace-pre-wrap overflow-wrap break-all text-amber-500">{formattedViewNumber}m</i> 
-                   ):(
-            <i className="whitespace-pre-wrap overflow-wrap break-all text-center text-amber-500">{views}</i> 
-                   )}
-         <img className="w-5 h-4  " src={`${show}`}/>
-        </div>
-        </div>
-       </div>
-       {/* <span className=" float-right mr-1 text-center flex-2 h-auto overflow-hidden w-3/12 pt-3 mb-[-0.5]">
-  
-       </span>    */}
-      {/* </div> */}
+          </div>
+         </div>
      </div>
+    <div className=" font-bold w-full mt-5 text-left ml-1 "> 
+    <p className=" text-lg">{item.name.substring(0,80)}</p>
+    <p className=" ml-1 text-sm">{dataVacancy[0].description.substring(0,60)}...</p>   
+    <span className=" w-full ml-1 text-sm underline text-center">{item?.date}</span>  
     </div>
-      </>
-     )})):(<><div className="text-xl font-semibold flex justify-center mt-5 ml-32">------ ምንም ሥራ  የለም! ------</div></>) }
     </div>
-    </div>
+    </>)})):(<><div className=" text-xl font-semibold flex justify-center mt-5 ml-32">
+                   ------ No Vacancy ! ------</div></>)}
+   </div>
+  </div>
       <br />
       {vacancies?.vacancies?.length > 0 && 
        <div className=" justify-center ml-10 mt-10">
         {(vacancies?.vacancies?.length > page * 6)?(
            <p className='text-sm text-gray-700 mb-7'>
-            ክጠቅላላ <span className='font-medium ml-2 mr-2'> {vacancies?.vacancies?.length} </span>
-             የስራ ማስታወቂያዎች ዝርዝር ውስጥ ከቁጥር <span className='font-medium ml-2 mr-2'>{page * 6 - 6}</span>
-             እስከ ቁጥር <span className='font-medium ml-2 mr-2'> {page * 6} </span> የሚገኙ የስራ ማስታወቂያዎች ዝርዝር  
+            From all list<span className='font-medium ml-2 mr-2'> {vacancies?.vacancies?.length} </span>
+             vacancies.Some lists from <span className='font-medium ml-2 mr-2'>{page * 6 - 6}</span>
+             number to <span className='font-medium ml-2 mr-2'> {page * 6} </span> number  
              </p>
           ):<p className='text-sm text-gray-700 mb-7'>
-              <p className="mr-2">(መጨረሻው ነው)</p> ጠቅላላ <span className='font-medium ml-2 mr-2'> {vacancies?.vacancies?.length} </span>
-               የስራ ማስታወቂያዎች ብቻ ይገኛሉ::  
+              <p className="mr-2">(the end)</p> Generally <span className='font-medium ml-2 mr-2'> {vacancies?.vacancies?.length} </span>
+               vacancies only.
             </p>
           }
         <nav
@@ -418,13 +366,13 @@ return(
             className='relative inline-flex items-center px-2 py-2 rounded-l-md border
             bg-[#fe9900] border-gray-300  text-sm font-medium text-gray-500 hover:bg-gray-50'
           >
-            <span className="font-bold">ምልስ</span>
+            <span className="font-bold">back</span>
         </button>
          <button
             onClick={() => selectPageHandler(page + 1)}
             className='relative inline-flex items-center px-2 py-2 rounded-r-md border
              border-gray-300 bg-[#fe9900] text-sm font-medium text-gray-500 hover:bg-gray-50'>
-            <span className=" font-bold">ቀጣይ</span>
+            <span className=" font-bold">next</span>
          </button>
         </nav>
       </div>
@@ -439,9 +387,9 @@ return(
                    <div className="flex justify-end p-1">
                    {/* Share button */}
                    <span className="flex flex-row ">
-                   <button className="m-2" onClick={handleFBShareClick}>           
+                   {/* <button className="m-2" onClick={handleFBShareClick}>           
                      <img className="w-14 h-10 " src={fbicon} alt=""/>
-                    </button>
+                    </button> */}
                    <button className="m-2" onClick={handleTGShareClick}>
                      <img className="w-14 h-10" src={tgicon} alt=""/>
                     </button>
@@ -458,19 +406,20 @@ return(
                     <div className="p-4 w-1/2">
                     <img
                       className="w-full h-96 transition cursor-pointer duration-700"                     
-                      src={`${AddressBaseUrl}/images/${detailInfo.image}`}
+                      //src={`${AddressBaseUrl}/images/${detailInfo.image}`}
+                      src={image1}
                       alt="product img not found"
                     /> 
                     </div>
                    <div className="m-4">
                    {/* <p className="text-lg font-bold">{louberWorkDetail?.name}</p>  */}
                     <div class="bg-white rounded-md max-w-4xl mx-auto p-2 space-y-2 -mt-2 shadow-lg">
-                    <h3 class="border-t mb-2 pt-3 font-semibold underline">የድርጅቱ ስም: <span >EplusApp/ኢጵላሣጵ</span></h3> 
-                    <h3 className="flex"><h3 class="mb-1 font-semibold underline">የስራው መጠሪያ: </h3> <span >{detailInfo?.title}</span></h3>
-                    <h3 className="flex"><h3 class="mb-1 font-semibold underline">ደሞዝ: </h3><span> {detailInfo?.price}</span></h3>
-                    <h3 className="flex"><h3 class="mb-1 font-semibold underline">የምዝገባ ማብቂያ ቀን: </h3><span >{detailInfo?.closingDate?.split('T')[0]}-{detailInfo?.closingDate?.split('T')[0]}</span></h3>
+                    <h3 class="border-t mb-2 pt-3 font-semibold underline">Organaizations Name: <span >EplusApp/ኢጵላሣጵ</span></h3> 
+                    <h3 className="flex"><h3 class="mb-1 font-semibold underline">Job Title: </h3> <span >{detailInfo?.title}</span></h3>
+                    <h3 className="flex"><h3 class="mb-1 font-semibold underline">Salary: </h3><span> {detailInfo?.price}</span></h3>
+                    <h3 className="flex"><h3 class="mb-1 font-semibold underline">Register Date: </h3><span >{detailInfo?.closingDate?.split('T')[0]}-{detailInfo?.closingDate?.split('T')[0]}</span></h3>
                     <div class="pt-2">
-                    <h3 class="font-semibold -ml-56 underline"> ማብራሪያ:</h3>
+                    <h3 class="font-semibold -ml-56 underline">Description:</h3>
                     <p class=" mt-2">{detailInfo?.description}</p>
                     </div>
                      {(org?.promotedOrgs?.length > 0)

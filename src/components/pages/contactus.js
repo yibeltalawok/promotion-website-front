@@ -20,7 +20,7 @@ const Contact = () => {
         <form>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-1 ">
             <div>
-              <label className="text-sm  ">ሙሉ ስም</label>
+              <label className="text-sm  ">Full Name</label>
               <input
                 type="text"
                 className="ring-1 ring-gray-300 w-full  rounded-md py-1 px-4 outline-none focus:ring-2 focus:ring-teal-300"
@@ -29,7 +29,7 @@ const Contact = () => {
           </div>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-1 mt-4 md:mt-2">
             <div>
-              <label className="text-sm ">ኢሜል</label>
+              <label className="text-sm ">Email</label>
               <input
                 type="email"
                 className="ring-1 ring-gray-300 w-full  rounded-md py-1 px-4 outline-none focus:ring-2 focus:ring-teal-300"
@@ -37,7 +37,7 @@ const Contact = () => {
             </div>
             <div>
               <label for="" className="text-sm">
-                ስልክ ቁጥር
+                Phone Number
               </label>
               <input
                 type="text"
@@ -48,14 +48,14 @@ const Contact = () => {
           <div className="mt-4 mb-2 ">
             <textarea
               type="text"
-              placeholder="አስተያየት"
+              placeholder="comment"
               rows="2"
               className="ring-1 ring-gray-300 w-full rounded-md py-2 px-4 outline-none focus:ring-2 focus:ring-teal-300"
             ></textarea>
           </div>
 
             <button className="inline-block self-end bg-black hover:bg-hoverButton font-bold text-white rounded-lg py-3 px-7 uppercase text-base">
-              መልዕክት ያስቀምጡ
+              send message
             </button>
 
           <ToastContainer
@@ -76,10 +76,10 @@ const Contact = () => {
       <div className="grow-0 shrink-0 basis-auto w-full md:w-6/12 xl:w-6/12 my-4 right-24 absolute">
         <div className="xl:pl-1 md:pl-2 pl-2 pr-8 py-1">
           <h1 className="text-left text-2xl md:text-3xl xl:text-4xl font-bold font-display text-secondary mb-1 pb-2">
-            አስተያየትወን ያጋሩን
+            Add comments
           </h1>
           <p className="text-left py-1 text-textColor text-xl">
-            ከዚህ በታች የሚገኙ አድራሻዎችን በመጠቀም ልታገኙን ትችላላችሁ
+            Contact Us
           </p>
         </div>
         <div className="flex flex-col space-y-4 pb-6">

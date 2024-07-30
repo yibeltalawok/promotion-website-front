@@ -11,9 +11,9 @@ import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import { generateTelegramShareLink } from './generateTelegramShareLink';
 import tgicon from '../../icons/Telegram_logo.svg.webp';
-import fbicon from '../../icons/fbicon.png';
-import show from '../../icons/show.png';
-import like from '../../icons/like.png';
+import image1 from '../../img/bidImage.jpeg';
+// import show from '../../icons/show.png';
+// import like from '../../icons/like.png';
 const Bidding = (message) =>{
     const [data, setData] =useState(dataProducts || '');
   const dispatch = useDispatch();
@@ -163,10 +163,10 @@ const Bidding = (message) =>{
        <button
           className=" text-lg font-display text-black bg-[white] h-10 pl-3 pb-5 pr-3 ml-1 rounded-md font-medium hover:text-[#0397FF]"
          >
-         <span className=" mt-10 md:ml-12  underline decoration-pink-800 decoration-4 underline-offset-8">የጫራታ</span>ማስታዎቂያ
+         <span className=" mt-10 md:ml-12  underline decoration-pink-800 decoration-4 underline-offset-8 mr-1">Bid</span>Lists
          </button>
          <form onSubmit={submitHandler}>
-         <div class=" mb-4 flex flex-wrap items-stretch absolute md:-mt-4 mt-6 md:ml-0 ml-5 md:right-28 right-10">
+         <div class=" mb-4 flex items-stretch absolute md:-mt-4 mt-10 md:ml-0 ml-5 md:right-28 right-2">
          <input
          className="bg-[#E3E6E6]  p-3 relative mr-2 rounded-md z-20" 
              type="date"
@@ -195,124 +195,112 @@ const Bidding = (message) =>{
      </form>
     </div>
   </div>
-  <div className=' bg-white  md:flex lg:flex pb-32 md:-mt-14 mt-3 md:pl-16 pl-0 md:ml-3 md:mr-0 ml-10 mr-5'>    
+  <div className=' bg-white md:flex lg:flex pb-32 md:mt-0 mt-10 md:pl-14 pl-0 md:ml-3 md:mr-0 ml-3 mr-0'>    
     <div class="relative grid xl:grid-cols-3 md:grid-cols-3 grid-cols-1 xl:gap-20 md:gap-20 gap-12 my-3 xl:gap-x-10 md:gap-x-7 gap-x-5">
       {
-       (data?.length)>0
-         ?(
-          data?.slice(currentPage * 6 - 6, currentPage * 6).map((bidding,index) =>{
-           return(
+      //(product?.promotedProducts?.length)>0
+      (data.length>0)
+        ?(
+          //product?.promotedProducts?.slice(page * 6 - 6, page * 6).map((item, index) => {
+            data?.slice(currentPage * 6 - 6, currentPage * 6).map((item, index) => {
+            return(
               <>
-              <div key={index}
-               className=" h-40 md:h-56 xl:h-s6 xl:w-96 md:w-80 sm:w-60 relative md:ml-2 ml-2 mr-2 my-20 mb-24 md:mb-7">
-                <div className="w-full h-full relative border-gray-600 
-                shadow-md shadow-neutral-400 bg-cover bg-no-repeat rounded-xl "> 
-                 <div className="relative flex justify-center items-center h-full rounded-xl">
-                  <img
-                   //onClick={() => VacancieDetail(bidding)}
-                  src={`img/${bidding.featureImage}`} 
-                 // src={`${AddressBaseUrl}/images/${bidding.image}`} 
-                   className="transition relative w-full h-full cursor-pointer duration-700 rounded-xl border-2 border-b-2 border-gray-600"
-                    alt='images not found'/> 
-                </div>
-                {/* <div className="flex justify-center items-center h-full"> */}
-                <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full rounded-xl 
+            <div key={index} className='xl:h-s6 xl:w-96 md:w-80 sm:w-60 md:ml-2 ml-0 mr-0 my-20 mb-5 md:mb-1 shadow-slate-600 relative md:m-10 mt-16 m-0 rounded-xl shadow-[0_0_15px_0_rgba(0,0,0,0.1)]' style={{height:"420px"}}>
+             <div className='p-0.5 relative rounded-xl text-center justify-center' style={{height:"420px"}}>
+                 <div className="items-center hover:mt-2 duration-500 text-center justify-center rounded-xl" style={{height:"420px"}}>
+                  <div className=" h-3 bg-blue-500 w-full rounded-t-xl"></div>
+                  <div className="relative w-full h-6/12">
+                    <img
+                    className="relative w-full h-56 cursor-pointer border-2 border-b-1 border-gray-400"
+                        src={image1} 
+                     // src={`${AddressBaseUrl}/images/${item.featureImage}`}
+                      //onClick={ () => VacancieDetail(item)}
+                     // src={smartPhone}
+                      alt="product img not found"
+                    />
+                 <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full rounded-xl text-center
                     justify-center overflow-hidden bg-gradient-to-r from-green-500 via-amber-300
-                    to-pink-600 opacity-0 transition duration-300 ease-in-out hover:opacity-70"
-                    onClick={()=>VacancieDetail(bidding)}
-                    >
-                    <button onClick={() => VacancieDetail(bidding)} className=" h-12 w-28 rounded-3xl mt-20 text-slate-100 border border-none
-                    bg-black">View Detail</button>
-                    </div>
-          <div className="mt-4 float-left w-full flex">
-          {/* <ul  className='  mt-3 flex'>
-          {(org?.promotedOrgs?.length > 0)
-         ?(
-          org?.promotedOrgs?.map((orgs,index) => 
-        (
-          (orgs.id)==(bidding.orgId)?(
-               <button 
-             onClick={() => orgHandler(`${orgs.id}`)}
-             >
-             <img className=' w-12 -mt-3 h-10 rounded-full border-2' 
-               src={`${AddressBaseUrl}/images/${orgs?.logo}`}
-               alt='Noimage'/>
-             </button>)
-            :("")))):("")}
-          </ul> */}
-           {/* src={`${AddressBaseUrl}/images/${vacancie.image}`}  */}
-        <span className="mt-1 w-11/12 ">
-         <span className=" font-bold"> {bidding.title?.substring(0,80)}</span>
-           <br />
-          {(org?.promotedOrgs?.length > 0)
-          ?(
-           org?.promotedOrgs?.map((orgs,index) => 
+                  to-pink-600 opacity-0 transition duration-300 ease-in-out hover:opacity-70"
+                    onClick={()=>VacancieDetail(item)}>
+                   <button onClick={() => VacancieDetail(item)} className=" h-12 w-28 rounded-3xl mt-20 text-slate-100 border border-none
+                  bg-black">View Detail</button>
+                </div>
+                </div>
+             <div className=" h-4/12 w-full text-center justify-center">
+              <div className=" float-left h-8/12 w-full flex text-center justify-center">
+            <div className=" w-2/3 text-left mt-3 p-1 pt-2 pl-3">
+            {/* {(product?.length > 0)
+            ?(
+            product?.map((orgs,index) => 
            (
-           (orgs.id)==(bidding.orgId)?(
-            <>
+            (orgs.id)!==(item.orgId)?(
+              <> */}
+    {data[0].name.substring(0,75)}       
+                                {/* </>             
+              ):("No image"))))
+          :("No organization")} */}
+         </div>
+             {/* src={`${AddressBaseUrl}/images/${vacancie.image}`}  */}
+            <div className=" w-1/3 text-center items-center justify-center">
             <button 
-             className=' text-[#0099ff] mt-4 float-left w-full flex'
-             onClick={() => orgHandler(`${orgs.id}`)}
-             >
-             <img className=' w-10 -mt-3 h-10 rounded-full border-1 mr-3' 
-               src={`${AddressBaseUrl}/images/${orgs?.logo}`}
-               alt='Noimage'/>
-             {orgs.name?.substring(0,75)}
-             
-             </button>
-             <br />
-            <i className="">
-          {/* {item.createdAt.split('T')[0]} */}
-          <i className=" ml-12">{moment(bidding.createdAt).fromNow()} </i>
-          </i>
-            </>             
-            ):(""))))
-        :("")}
-        </span>
-        <span className=" float-right mr-1 flex flex-row text-center w-3/12 pt-3 mb-[-0.5]">
-        <span className="inline-block mx-auto">
-         {(likes >= 100000)
-                   ?(
-            <i className="whitespace-pre-wrap overflow-wrap break-all text-amber-500">{formattedLikeNumber}m</i> 
-                   ):(
-            <i className="whitespace-pre-wrap overflow-wrap break-all text-amber-500">{likes}</i> 
-                   )}
-          <br />
-         <img onClick={handleLike} disabled={hasLiked} className="w-5 h-4 " src={`${like}`}/>
-        </span>
-        <span className="inline-block mx-auto">
-        {(views >= 100000)
-                   ?(
-            <i className="whitespace-pre-wrap overflow-wrap break-all   text-amber-500">{formattedViewNumber}m</i> 
-                   ):(
-            <i className="whitespace-pre-wrap overflow-wrap break-all text-amber-500">{views}</i> 
-                   )}
-        <br />
-         <img className="w-5 h-4  " src={`${show}`}/>
-        </span>
-     </span>  
-         </div>
-          </div>
-         </div>
-        </>
-       )})):(<><div className=" text-xl font-semibold flex justify-center mt-5 ml-32">------ ምንም ጫራታ  የለም ! ------
-       </div></>) 
-        }
+              className=' text-[#0099ff] float-left w-11/12 items-center text-center justify-center flex'
+              onClick={() => orgHandler(`${data[0].id}`)}
+              >
+              <img className=' w-11/12 h-24 rounded-r-3xl rounded-t-3xl border-1 ml-1 mt-2' 
+               // src={`${AddressBaseUrl}/images/${orgs?.logo}`}
+               src={`/img/${item.featureImage}`} 
+                alt='Noimage'/>
+              </button>
+              </div>
+            {/* <span className=" float-right mr-1 flex flex-row text-center w-3/12 pt-3 mb-[-0.5]">
+              <span className="inline-block mx-auto">
+              {(likes >= 100000)
+                        ?(
+                  <i className="whitespace-pre-wrap overflow-wrap break-all   text-amber-500">{formattedLikeNumber}m</i> 
+                        ):(
+                        <i className="whitespace-pre-wrap overflow-wrap break-all   text-amber-500">{likes}</i> 
+                        )}
+                <br />
+              <img onClick={handleLike} disabled={hasLiked} className="w-5 h-4 " src={`${like}`}/>
+             </span>
+             <span className="inline-block mx-auto">
+                {(views >= 100000)
+                          ?(
+                    <i className="whitespace-pre-wrap overflow-wrap break-all   text-amber-500">{formattedViewNumber}m</i> 
+                          ):(
+                    <i className="whitespace-pre-wrap overflow-wrap break-all text-amber-500">{views}</i> 
+                          )}
+                <br />
+                <img className="w-5 h-4  " src={`${show}`}/>
+             </span>
+            </span>    */}
+           </div> 
+        <div className="absolute bottom-0 w-full h-10 pt-2 text-center justify-center rounded-b-xl text-gray-700 -ml-0.5">
+      Choose our compan product
+        </div>
        </div>
       </div>
+     </div>
+    <div className=" font-bold w-8/12 mt-5 text-left ml-1 "> {item.name.substring(0,80)}</div>
+    </div>
+    </>)})):(<><div className=" text-xl font-semibold flex justify-center mt-5 ml-32">
+                   ------ No Products ! ------</div></>)}
+   </div>
+  </div>
+
       <br /> <br />
       <div>
      {bidding?.vacancies?.length > 0 && 
      <div className=" justify-center md:ml-10 ml-10 md:mt-10 -mt-9">       
       {(bidding?.vacancies?.length >currentPage * 6)?(
           <p className='text-sm text-gray-700 mb-7'>
-            ክጠቅላላ <span className='font-medium ml-2 mr-2'> {bidding?.vacancies?.length} </span>
-            የጫራታ ማስታወቂያዎች  ዝርዝር ውስጥ ከቁጥር <span className='font-medium ml-2 mr-2'>{currentPage * 6 - 6}</span>
-             እስከ ቁጥር <span className='font-medium ml-2 mr-2'> {currentPage * 6} </span> የሚገኙ የጫራታ ማስታወቂያዎች  ዝርዝር  
+            From all list of <span className='font-medium ml-2 mr-2'> {bidding?.vacancies?.length} </span>
+            bids the list found from <span className='font-medium ml-2 mr-2'>{currentPage * 6 - 6}</span>
+              to <span className='font-medium ml-2 mr-2'> {currentPage * 6} </span>   
              </p>
            ):<p className='text-sm text-gray-700 mb-7'>
-               <p className="mr-2">(መጨረሻው ነው)</p> ጠቅላላ <span className='font-medium ml-2 mr-2'> {bidding?.vacancies?.length} </span>
-               የጫራታ ማስታወቂያዎች ብቻ ይገኛሉ::  
+               <p className="mr-2">(The End)</p> Generally <span className='font-medium ml-2 mr-2'> {bidding?.vacancies?.length} </span>
+               bids.  
               </p>
             }
           <nav
@@ -324,14 +312,14 @@ const Bidding = (message) =>{
             className='relative inline-flex items-center px-2 py-2 rounded-l-md border
             bg-[#fe9900] border-gray-300  text-sm font-medium text-gray-500 hover:bg-gray-50'
             >
-            <span className="font-bold">ምልስ</span>
+            <span className="font-bold">back</span>
            </button>
           <button
           onClick={() => selectPageHandler(currentPage + 1)}
             className='relative inline-flex items-center px-2 py-2 rounded-r-md border
              border-gray-300 bg-[#fe9900] text-sm font-medium text-gray-500 hover:bg-gray-50'
              >
-          <span className=" font-bold">ቅጣይ</span>
+          <span className=" font-bold">next</span>
             </button>
            </nav>
          </div>}
@@ -345,9 +333,9 @@ const Bidding = (message) =>{
              <div className="flex justify-end p-1">
                    {/* Share button */}
                    <span className="flex flex-row ">
-                   <button className="m-2" onClick={handleFBShareClick}>           
+                   {/* <button className="m-2" onClick={handleFBShareClick}>           
                      <img className="w-14 h-10 " src={fbicon} alt=""/>
-                    </button>
+                    </button> */}
                    <button className="m-2" onClick={handleTGShareClick}>
                      <img className="w-14 h-10" src={tgicon} alt=""/>
                     </button>
@@ -364,12 +352,12 @@ const Bidding = (message) =>{
                     <div className="p-4 w-1/2">
                     <img
                       className="w-full h-96 transition cursor-pointer duration-700"
-                      src={`${AddressBaseUrl}/images/${detailInfo.image}`}
-                     // src={samrtPc} 
+                     // src={`${AddressBaseUrl}/images/${detailInfo.image}`}
+                     src={image1} 
                       alt="product img not found"
                       /> 
                       </div>
-                     <div className="m-4 w-1/2 border border-grey-100 shadow-lg">
+                     <div className="m-4 w-1/2 border border-grey-100 shadow-lg p-3">
                      <p className="text-lg font-bold">{detailInfo?.title}</p> 
                      <div class="pt-2">
                      <p className="text-sm font-bold  mt-4 text-center">{detailInfo?.description}</p>  
